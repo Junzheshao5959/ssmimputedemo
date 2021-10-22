@@ -35,6 +35,11 @@ Build -&gt; install and restart
 
 ``` r
 library(ssmimputedemo)
+```
+
+    ## Loading required package: tibble
+
+``` r
 ?hello
 ```
 
@@ -124,4 +129,83 @@ Check changes from timeline
 
 ``` r
 use_github_actions()
+codecov()
 ```
+
+<https://app.travis-ci.com/github/Junzheshao5959/ssmimputedemo/builds>
+
+## Unit Tests and Local Package Coverage
+
+Let’s do some test
+
+``` r
+usethis::use_testthat()
+```
+
+    ## ✓ Setting active project to '/Users/junzheshao/Documents/ssmimputedemo'
+
+    ## • Call `use_test()` to initialize a basic test file and open it for editing.
+
+``` r
+library(testthat)
+```
+
+create a file under \~/test/testthat, like this:
+
+``` r
+test_that("test test",{
+  set.seed(123)
+  res = printer(x = rnorm(5), r = rnorm(5))
+  expect_that(nrow(res) ,equals(5) )
+})
+```
+
+Addins: calculate packge coverage or you can
+
+``` r
+covr::package_coverage(type = 'all')
+```
+
+    ## ssmimputedemo Coverage: 100.00%
+
+    ## R/hello.R: 100.00%
+
+    ## R/printer.R: 100.00%
+
+## Add some data to our package
+
+``` r
+use_data_raw()
+
+set.seed(123)
+
+library(dplyr)
+x = rnorm(100)
+y = rnorm(100)
+sample_data = tibble(x = x, y = y)
+  
+usethis::use_data(sample_data, compress = "xz")
+```
+
+You will have sampe\_data.rda under the \~/data folder
+
+``` r
+library(ssmimputedemo)
+head(sample_data)
+```
+
+    ## # A tibble: 6 × 2
+    ##         x       y
+    ##     <dbl>   <dbl>
+    ## 1 -0.560  -0.710 
+    ## 2 -0.230   0.257 
+    ## 3  1.56   -0.247 
+    ## 4  0.0705 -0.348 
+    ## 5  0.129  -0.952 
+    ## 6  1.72   -0.0450
+
+``` r
+?sample_data
+```
+
+you can also create a website by package down.

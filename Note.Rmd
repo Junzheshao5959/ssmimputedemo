@@ -130,8 +130,49 @@ codecov()
 ```
 https://app.travis-ci.com/github/Junzheshao5959/ssmimputedemo/builds
 
-Unit Tests and Local Package Coverage
+## Unit Tests and Local Package Coverage
+Let's do some test
 ```{r}
+usethis::use_testthat()
+library(testthat)
+```
+create a file under ~/test/testthat, like this:
+```{r eval=FALSE}
+test_that("test test",{
+  set.seed(123)
+  res = printer(x = rnorm(5), r = rnorm(5))
+  expect_that(nrow(res) ,equals(5) )
+})
 
 ```
+
+Addins: calculate packge coverage
+or you can 
+```{r}
+covr::package_coverage(type = 'all')
+```
+
+
+## Add some data to our package
+
+```{r eval=FALSE}
+use_data_raw()
+
+set.seed(123)
+
+library(dplyr)
+x = rnorm(100)
+y = rnorm(100)
+sample_data = tibble(x = x, y = y)
+  
+usethis::use_data(sample_data, compress = "xz")
+```
+  
+You will have sampe_data.rda under the ~/data folder
+```{r}
+library(ssmimputedemo)
+head(sample_data)
+?sample_data
+```
+you can also create a website by package down.
 
