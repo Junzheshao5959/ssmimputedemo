@@ -9,7 +9,7 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Credit to John Muschelli
+Credit to John Muschelli  
 ## Where to start
 
 check your name is available on CRAN, Bioconductor or GitHub
@@ -92,6 +92,9 @@ use_github(protocol = "https")
 ```
   
 really nice to add these
-RoxygenNote: 7.1.2
-URL: https://github.com/Junzheshao5959/ssmimputedemo
-BugReports: https://github.com/Junzheshao5959/ssmimputedemo/issues
+RoxygenNote: 7.1.2  
+URL: https://github.com/Junzheshao5959/ssmimputedemo  
+BugReports: https://github.com/Junzheshao5959/ssmimputedemo/issues  
+
+
+Importing and Exporting funcitons
