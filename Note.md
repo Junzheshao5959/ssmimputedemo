@@ -3,7 +3,8 @@ R package developement
 Junzhe Shao
 10/21/2021
 
-Credit to John Muschelli \#\# Where to start
+Credit to John Muschelli  
+\#\# Where to start
 
 check your name is available on CRAN, Bioconductor or GitHub
 
@@ -75,7 +76,9 @@ overwritten.
 
 delete these files with default setup Build -&gt; clean and rebuild
 
-export(hello), let the users using hello check package
+export(hello), let the users using hello
+
+check package
 
 creater a new printer funtion, you can add multiple files
 
@@ -90,6 +93,35 @@ use_git(message = "")
 use_github(protocol = "https")
 ```
 
-really nice to add these RoxygenNote: 7.1.2 URL:
-<https://github.com/Junzheshao5959/ssmimputedemo> BugReports:
-<https://github.com/Junzheshao5959/ssmimputedemo/issues>
+really nice to add these RoxygenNote: 7.1.2  
+URL: <https://github.com/Junzheshao5959/ssmimputedemo>  
+BugReports: <https://github.com/Junzheshao5959/ssmimputedemo/issues>
+
+## Importing and Exporting funcitons
+
+using vignette <https://r-pkgs.org/vignettes.html>
+
+``` r
+use_vignette("SSM_vignette")
+```
+
+Suggests: knitr, rmarkdown VignetteBuilder: knitr
+importFrom(tibble,as\_data\_frame)
+
+automatically add
+
+``` r
+use_package("tibble")
+```
+
+Depends: tibble
+
+You can use check package to see if there is any function not imported.
+
+## Travis and Continuous Integration
+
+Check changes from timeline
+
+``` r
+use_github_actions()
+```

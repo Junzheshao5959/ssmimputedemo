@@ -109,3 +109,22 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+importFrom(tibble,as_data_frame)
+
+automatically add 
+```{r eval=FALSE}
+use_package("tibble")
+```
+
+Depends:
+    tibble
+    
+You can use check package to see if there is any function not imported.
+
+## Travis and Continuous Integration
+
+Check changes from timeline
+```{r eval =FALSE}
+use_github_actions()
+```
+
