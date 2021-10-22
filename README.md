@@ -14,6 +14,21 @@ You can install the development version of ssmimputedemo like so:
 
 ``` r
 # FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+
+library(devtools)
+#> Loading required package: usethis
+devtools::install_github("Junzheshao5959/ssmimputedemo")
+#> Using github PAT from envvar GITHUB_PAT
+#> Downloading GitHub repo Junzheshao5959/ssmimputedemo@HEAD
+#>      checking for file ‘/private/var/folders/mz/kgx_5_y93ss0sgkgrdvzs_yr0000gn/T/RtmpmjjmPQ/remotes1be42481277d/Junzheshao5959-ssmimputedemo-0b0724b/DESCRIPTION’ ...  ✓  checking for file ‘/private/var/folders/mz/kgx_5_y93ss0sgkgrdvzs_yr0000gn/T/RtmpmjjmPQ/remotes1be42481277d/Junzheshao5959-ssmimputedemo-0b0724b/DESCRIPTION’
+#>   ─  preparing ‘ssmimputedemo’:
+#>   ✓  checking DESCRIPTION meta-information
+#>   ─  checking for LF line-endings in source and make files and shell scripts
+#>   ─  checking for empty or unneeded directories
+#>    Omitted ‘LazyData’ from DESCRIPTION
+#>   ─  building ‘ssmimputedemo_0.1.0.tar.gz’
+#>      
+#> 
 ```
 
 ## Example
@@ -23,6 +38,8 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(ssmimputedemo)
 ## basic example code
+ssmimputedemo::hello("Junzhe")
+#> [1] "Hello Junzhe, this is the word world!"
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`?

@@ -24,8 +24,11 @@ The goal of ssmimputedemo is to ...
 
 You can install the development version of ssmimputedemo like so:
 
-``` r
+``` {r}
 # FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+
+library(devtools)
+devtools::install_github("Junzheshao5959/ssmimputedemo")
 ```
 
 ## Example
@@ -35,6 +38,7 @@ This is a basic example which shows you how to solve a common problem:
 ```{r example}
 library(ssmimputedemo)
 ## basic example code
+ssmimputedemo::hello("Junzhe")
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
