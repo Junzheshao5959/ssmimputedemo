@@ -126,5 +126,12 @@ You can use check package to see if there is any function not imported.
 Check changes from timeline
 ```{r eval =FALSE}
 use_github_actions()
+codecov()
+```
+https://app.travis-ci.com/github/Junzheshao5959/ssmimputedemo/builds
+
+Unit Tests and Local Package Coverage
+```{r}
+
 ```
 
