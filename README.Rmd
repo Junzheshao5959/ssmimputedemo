@@ -16,6 +16,8 @@ knitr::opts_chunk$set(
 # ssmimputedemo
 
 <!-- badges: start -->
+[![Travis build status](https://travis-ci.com/Junzheshao5959/ssmimputedemo.svg?branch=master)](https://travis-ci.com/Junzheshao5959/ssmimputedemo)
+[![R-CMD-check](https://github.com/Junzheshao5959/ssmimputedemo/workflows/R-CMD-check/badge.svg)](https://github.com/Junzheshao5959/ssmimputedemo/actions)
 <!-- badges: end -->
 
 The goal of ssmimputedemo is to ...

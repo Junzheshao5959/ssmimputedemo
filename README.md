@@ -4,6 +4,10 @@
 # ssmimputedemo
 
 <!-- badges: start -->
+
+[![Travis build
+status](https://travis-ci.com/Junzheshao5959/ssmimputedemo.svg?branch=master)](https://travis-ci.com/Junzheshao5959/ssmimputedemo)
+[![R-CMD-check](https://github.com/Junzheshao5959/ssmimputedemo/workflows/R-CMD-check/badge.svg)](https://github.com/Junzheshao5959/ssmimputedemo/actions)
 <!-- badges: end -->
 
 The goal of ssmimputedemo is to …
@@ -20,7 +24,7 @@ library(devtools)
 devtools::install_github("Junzheshao5959/ssmimputedemo")
 #> Using github PAT from envvar GITHUB_PAT
 #> Downloading GitHub repo Junzheshao5959/ssmimputedemo@HEAD
-#>      checking for file ‘/private/var/folders/mz/kgx_5_y93ss0sgkgrdvzs_yr0000gn/T/RtmpmjjmPQ/remotes1be42481277d/Junzheshao5959-ssmimputedemo-0b0724b/DESCRIPTION’ ...  ✓  checking for file ‘/private/var/folders/mz/kgx_5_y93ss0sgkgrdvzs_yr0000gn/T/RtmpmjjmPQ/remotes1be42481277d/Junzheshao5959-ssmimputedemo-0b0724b/DESCRIPTION’
+#>      checking for file ‘/private/var/folders/mz/kgx_5_y93ss0sgkgrdvzs_yr0000gn/T/RtmpM8EcWW/remotes3641431064ac/Junzheshao5959-ssmimputedemo-d5f8324/DESCRIPTION’ ...  ✓  checking for file ‘/private/var/folders/mz/kgx_5_y93ss0sgkgrdvzs_yr0000gn/T/RtmpM8EcWW/remotes3641431064ac/Junzheshao5959-ssmimputedemo-d5f8324/DESCRIPTION’
 #>   ─  preparing ‘ssmimputedemo’:
 #>   ✓  checking DESCRIPTION meta-information
 #>   ─  checking for LF line-endings in source and make files and shell scripts
