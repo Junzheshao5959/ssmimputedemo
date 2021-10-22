@@ -9,5 +9,5 @@
 #' \dontrun{
 #' hello("Steve")}
 hello <- function(x) {
-  print("Hello",x,", this is the word world!")
+  print(paste0("Hello ",x,", this is the word world!"))
 }
