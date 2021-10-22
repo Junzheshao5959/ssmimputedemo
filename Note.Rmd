@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 Credit to John Muschelli  
+
 ## Where to start
 
 check your name is available on CRAN, Bioconductor or GitHub

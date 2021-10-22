@@ -3,8 +3,9 @@ R package developement
 Junzhe Shao
 10/21/2021
 
-Credit to John Muschelli  
-\#\# Where to start
+Credit to John Muschelli
+
+## Where to start
 
 check your name is available on CRAN, Bioconductor or GitHub
 
