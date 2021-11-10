@@ -2,5 +2,8 @@
 
 export(hello)
 export(printer)
+export(run.SSMimpute_unanimous_cpts)
+import(changepoint)
+import(dlm)
 import(dplyr)
 importFrom(tibble,as_data_frame)

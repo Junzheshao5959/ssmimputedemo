@@ -3,3 +3,4 @@ test_that("test test",{
   res = printer(x = rnorm(5), r = rnorm(5))
   expect_that(nrow(res) ,equals(5) )
 })
+

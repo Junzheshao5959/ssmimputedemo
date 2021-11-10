@@ -23,5 +23,7 @@ Imports:
     dplyr
 Depends:
     R (>= 2.10),
-    tibble
+    tibble,
+    changepoint,
+    dlm
 Config/testthat/edition: 3
