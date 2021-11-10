@@ -6,3 +6,5 @@ y = rnorm(100)
 sample_data = tibble(x = x, y = y)
 
 usethis::use_data(sample_data, compress = "xz")
+
+

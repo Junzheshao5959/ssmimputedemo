@@ -2,6 +2,7 @@
 
 export(hello)
 export(printer)
+export(run.SSM_unanimous_cpts)
 export(run.SSMimpute_unanimous_cpts)
 import(changepoint)
 import(dlm)

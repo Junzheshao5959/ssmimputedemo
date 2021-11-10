@@ -1,3 +1,16 @@
+#' SSM function
+#'
+#' @param data_ss contains all information, and only selected variables in formula_var enters the statespace model
+#' @param formula_var select variables from <data_ss> into the statespace model
+#' @param ss_param_temp <m0>: initial values for states
+#' @param max_iteration control for the convergence of changepoints, a positive integer
+#' @param cpt_learning_param <cpt_learning_param>:  <cpt_method> either "mean" or "meanvar"
+#' @param dlm_option ...
+#' @param printFlag T / F
+#'
+#' @return
+#' @export
+#' @import dplyr changepoint dlm
 run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=100,
                                 cpt_learning_param=list(cpt_method="mean",burnin=1/10,mergeband=20,convergence_cri=10),
                                 dlm_option="smooth",
@@ -10,43 +23,43 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
   #               Thus, it only works for (i) a initial collection of changepoints are given for a collection of variables,
   #                                           those changpoints are fixed, and no more updating
   #                                       (ii) a initial collection of changepoints are given for a collection of variables,
-  #                                            but those changepoints are not for sure, and need updating 
+  #                                            but those changepoints are not for sure, and need updating
   #                                       (iii) no initial guess is given in terms of changepoints, but only how many
   #                                             the changepoints learnt need to be the same across all variables, whose coefficient shifts levels
   #                Working flowchart for [changepoints]
-  #                (i) if changepoints are given in <changepoints> and <fixed_cpts>=T for all variabels in [w_cp_param] 
+  #                (i) if changepoints are given in <changepoints> and <fixed_cpts>=T for all variabels in [w_cp_param]
   #                     -> 1) no initailization
   #                        2) no estimation for the location of changepoints
-  #                        3) no iteration until convergence for changepoints 
+  #                        3) no iteration until convergence for changepoints
   #                     we allow changepoints differ for each variables, when they are all given in advance in this case
-  #                (ii) if changepoints are given in <changepoints> and <fixed_cpts>=F for all variabels in [w_cp_param] 
+  #                (ii) if changepoints are given in <changepoints> and <fixed_cpts>=F for all variabels in [w_cp_param]
   #                     -> 1) no initailization
   #                        2) estimate the location of changepoints for those variables with fixed_cpts=F
   #                        3) update changepoints via iteration, until convergence achieved for those variables with fixed_cpts=F
   #                     changepoints should be same for variables for with fixed_cpts=F
-  #                (iii) if changepoints are not given and thus <fixed_cpts> do not exist in [w_cp_param] 
+  #                (iii) if changepoints are not given and thus <fixed_cpts> do not exist in [w_cp_param]
   #                    -> 1) initialization
   #                       2) require estimation for the location of changepoints
-  #                       3) require iteration until convergence for changepoints 
+  #                       3) require iteration until convergence for changepoints
   #                     we requirechangepoints should be same across all variables with shifed levels
   #                Otherwise, all other cases are not permitted for the moment, including
-  #                    -> [not allowed] 1) changepoints are partially given 
-  #                    -> [not allowed] 2) <fixed_cpts> are partially T 
+  #                    -> [not allowed] 1) changepoints are partially given
+  #                    -> [not allowed] 2) <fixed_cpts> are partially T
   # Limitation 3: currently the initiation of changepoints parts miss the update of data with interaction between y_1 and x
-  # Limitation 4[to be changed]: simple and no iterative "StructTS" imputation for learning cpts in V, only for W 
+  # Limitation 4[to be changed]: simple and no iterative "StructTS" imputation for learning cpts in V, only for W
   #                              estimated_cpts and iter in the return result only reflects those for W, not for V
-  
+
   # Explanation for parameters:
   # <data_ss>: contains all information, and only selected variables in formula_var enters the statespace model
   # <formula_var>: select variables from <data_ss> into the statespace model
-  # <ss_param>: 
+  # <ss_param>:
   #             <m0>: initial values for states
-  #             <C0>: initial values for variance of states 
+  #             <C0>: initial values for variance of states
   #             <inits>: initial values for the estimating of all NA terms, via maximizing likelihood
-  #             <AR1_coeffi>: variables, whose coefficient is a AR(1) process; 
+  #             <AR1_coeffi>: variables, whose coefficient is a AR(1) process;
   #                           if none, then is NULL
   #             <rw_coeffi>: variables, whose coefficient is a random walk process;
-  #                          if none, then is NULL  
+  #                          if none, then is NULL
   #             <w_cp_param>: variables, whose coefficients are periodic fixed (may shift to other levels over time, but fixed within periods)
   #                          [structure] a list of lists, containing <variable>, <segments>, <changepoints>, <fixed_cpts> for each variable whose coefficient level shifts to different values
   #                                      - <variable> the name of the variable [must exist]
@@ -71,8 +84,8 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
   #                        <mergeband> a positive integer
   #                        <convergence_cri> a positive integer
   #                        Caution: all used for learning changepoints in coefficients, not for changepoints in observational variance
-  
-  
+
+
   # Example 1: (fixed effects for all coefficients)
   #            ss_param=list(inits=c(log(1)),m0=c(40,0.5,-1.5,-0.5,1),C0=diag(rep(10^3),5),
   #                          AR1_coeffi=NULL,rw_coeffi=NULL,v_cp_param=NULL,w_cp_param=NULL,max_iteration=50)
@@ -105,7 +118,7 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
   #                       v_cp_param=NULL,
   #                       w_cp_param=list(list(variable="x","segments"=3,changepoints=c(400,700),fixed_cpts=T)),
   #                       max_iteration=max_iteration)
-  # Example 6.2: (periodic coefficient for X and X_1 of 3 uncertain known perios) 
+  # Example 6.2: (periodic coefficient for X and X_1 of 3 uncertain known perios)
   #              ss_param=list(inits=c(log(1)),m0=c(40,0.5,-1.5,-0.5,1),C0=diag(rep(10^3),5),
   #                            AR1_coeffi=NULL,rw_coeffi=NULL,
   #                            v_cp_param=NULL,
@@ -117,7 +130,7 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
   #                          AR1_coeffi=NULL,rw_coeffi=NULL,
   #                          v_cp_param=list(segments=3),
   #                          w_cp_param=list(list(variable="x",segments=3)),max_iteration=50)
-  
+
   # ------------------- Preparation ---------------------- #
   # check: 1. all variables specified in the model exist the data_ss set
   #        2. ss_param is a list
@@ -125,13 +138,13 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
   #           2) C0 is either NULL(use the default in dlm), or given (contains no NA, all numeric, same dim as n_states*n_states)
   #           3) the variables, whose coefficiens is AR(1) process, are char string, no NA, and in both model and data_ss set
   #           4) the variables, whose coefficiens is randeom walk process, is char string and in both model and data_ss set
-  #           5) check if changepoints of V need to be estimated 
+  #           5) check if changepoints of V need to be estimated
   #              -> as no imputation is applied for y -> no change on data_ss -> no iteration needed
   #              In short, changepoints of V is only estimated once, in the initialization part
   #              Otherwise, if changepoints are given, no action is needed.
   #           6) check if changepoints of W for certain variables need to be estimated
   #           7) check cpt_learning_param under w_param
-  #           8) check if the length of inits is correct 
+  #           8) check if the length of inits is correct
   #         3. <max_iteration>: a positive integer
   if(!all(formula_var %in% colnames(data_ss))){
     stop("The variables specified in the formula are not contained in the data_ss set.")
@@ -146,14 +159,14 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
     rw_coeffi=ss_param_temp$rw_coeffi      # add 1 additional NA (W) -> checked
     w_cp_param=ss_param_temp$w_cp_param    # change points to be estimated -> change W_t to be 10
     v_cp_param=ss_param_temp$v_cp_param    # change points estimated once in the begining, and add #(segments-1) NA for V -> checked
-    
-    # n_states includes: 1 for intercept, 
-    #                    n_variable for all selected variable, 
+
+    # n_states includes: 1 for intercept,
+    #                    n_variable for all selected variable,
     #                    length(AR1_coeffi) for additional baselines for the AR(1) process
     #              Note: random walk only change W, and do not add states
     #                    shift in beta only change W to 10, do not add anything
     #                    varying V only change segments of V_t, do not add states
-    n_states=1+length(formula_var)+length(AR1_coeffi) 
+    n_states=1+length(formula_var)+length(AR1_coeffi)
     if(!is.null(m0)){ # m0 is either NULL(use the default in dlm), or given (contains no NA, all numeric, same length as states)
       if(!is.numeric(m0)){stop("Error in m0: m0 is not all numeric.")}
       if(!all(!is.na(m0))){stop("Error in m0: m0 contains NA.")}
@@ -192,7 +205,7 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
       if(!all(names(v_cp_param_learncps) %in% c("segments","changepoints","fixed_cpts"))){stop("Error in v_cp_param: only [segments], [changepoints], [fixed_cpts] are allowed.")}
       if(!(length(v_cp_param_learncps)>0 & length(v_cp_param_learncps)<4)){stop("Error in v_cp_param: length is [1,3].")}
       if(!("segments" %in% names(v_cp_param_learncps))){stop("Error in v_cp_param: <segments> must exist for v_cp_param.")}
-      if(!(is.numeric(v_cp_param_learncps$segments) & 
+      if(!(is.numeric(v_cp_param_learncps$segments) &
            length(v_cp_param_learncps$segments)==1 &
            v_cp_param_learncps$segments>0)){stop("Error in v_cp_param: <segments> is not a positive number.")}
       if(!all(!names(v_cp_param_learncps) %in% c("changepoints","fixed_cpts"))){ # if detected one of changepoints or fixed_cpts
@@ -208,7 +221,7 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
         }
       }else{
         # when initial guess of changepoints of V is unkwown
-        ######### initialize changepoints for V (part I of initialization)  ######### 
+        ######### initialize changepoints for V (part I of initialization)  #########
         if(sum(is.na(data_ss$y))!=0){
           # for the ignore case
           cpt_v_temp=cpt.var(na_kalman(data_ss$y,model="StructTS"),penalty="Manual",Q=v_cp_param_learncps$segments-1, method="BinSeg")
@@ -224,7 +237,7 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
         }
       }
       if(length(v_cp_param[["changepoints"]]) != (v_cp_param[["segments"]]-1)){
-        stop("For varying V, the number <changepoints> doesn't agree with those indicated by <segments>") 
+        stop("For varying V, the number <changepoints> doesn't agree with those indicated by <segments>")
       }
     }
     if(!is.null(w_cp_param)){
@@ -251,7 +264,7 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
       w_cp_param_learncps=w_cp_param
       # Check: 1) The variables with changepoints must be in data_ss and in formula
       #           the order of variables aligns with the order in the formula
-      #        2) for each variable with changepoints, 
+      #        2) for each variable with changepoints,
       #           check 2.1) [variable], [segments], [changepoints], [fixed_cpts] may exist
       #                 2.2) #elements for each sublist is 1-4.
       #                 2.3) [variable] and [segments] must exist
@@ -259,18 +272,18 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
       #                      [segments] must be a positive number
       #                      [segments] for all variables must be the same
       #                 2.4) when [changepoints] exists -> [fixed_cpts] must exist and be logical
-      #                 2.5) when [changepoints] doesn't exist, it need to be estimated only once from the data_ss 
+      #                 2.5) when [changepoints] doesn't exist, it need to be estimated only once from the data_ss
       #                      -> no iteration is needed, without iterative imputation
       #                 2.6) [variable], [segments], [changepoints] must exist for all variables after possibly estimation
-      #            Note: # changepoints need to strictly equal to [segments]-1 eventually, but not necessary in the intialization 
+      #            Note: # changepoints need to strictly equal to [segments]-1 eventually, but not necessary in the intialization
       # check 2.1)-2.3)
-      for(aa in 1:length(w_cp_param_learncps)){ 
+      for(aa in 1:length(w_cp_param_learncps)){
         if(!all(names(w_cp_param_learncps[[aa]]) %in% c("variable","segments","changepoints","fixed_cpts"))){stop("Error in w_cp_param: only [variable], [segments], [changepoints], [fixed_cpts] for each variable are allowed.")}
         if(!(length(w_cp_param_learncps[[aa]])>0 & length(w_cp_param_learncps[[aa]])<5)){stop("Error in w_cp_param: the length of each list is wrong.")}
         if(!all(c("variable","segments") %in% names(w_cp_param_learncps[[aa]]))){stop("Error in w_cp_param: <variable> and <segments> must exist for each level")}
         if(!(is.character(w_cp_param_learncps[[aa]]$variable) &
              length(w_cp_param_learncps[[aa]]$variable)==1)){stop("Error in w_cp_param: <variable> is not a char.")}
-        if(!(is.numeric(w_cp_param_learncps[[aa]]$segments) & 
+        if(!(is.numeric(w_cp_param_learncps[[aa]]$segments) &
              length(w_cp_param_learncps[[aa]]$segments)==1 &
              w_cp_param_learncps[[aa]]$segments>0)){stop("Error in w_cp_param: <segments> is not a positive integer.")}
       }
@@ -297,7 +310,7 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
       #                   Caution 2: For initialization, we do not require # segments=1 to be equal to the length of the changepoints
       if(all(unlist(lapply(1:length(w_cp_param_learncps), function(cc1){ "changepoints" %in% names(w_cp_param_learncps[[cc1]]) & "fixed_cpts" %in% names(w_cp_param_learncps[[cc1]])})))){
         # if [changepoints] and [fixed_cpts] both exist for each variable
-        if(!all(unlist(lapply(1:length(w_cp_param_learncps),function(cc3){is.numeric(w_cp_param_learncps[[cc3]]$changepoints) & 
+        if(!all(unlist(lapply(1:length(w_cp_param_learncps),function(cc3){is.numeric(w_cp_param_learncps[[cc3]]$changepoints) &
             all(w_cp_param_learncps[[cc3]]$changepoints>1 & w_cp_param_learncps[[cc3]]$changepoints < nrow(data_ss))})))){
           stop("Error in w_cp_param: [changepoints] for all variables are not all numeric and within the right range.")
         }
@@ -314,7 +327,7 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
       }else if(all(unlist(lapply(1:length(w_cp_param_learncps), function(cc2){ (!"changepoints" %in% names(w_cp_param_learncps[[cc2]])) & (!"fixed_cpts" %in% names(w_cp_param_learncps[[cc2]]))})))){
         # if [changepoints] and [fixed_cpts] both do not exist for each varible
         if(printFlag){cat("The changepoints of variables, whose coefficients shift over time, are not given.\n")}
-        ######### initialization of changepoints of W (part II of initialization) ##########        
+        ######### initialization of changepoints of W (part II of initialization) ##########
         # if the changepoints don't exist, we ask the corresponding coeffi be randome walk, and then learn changepoints from the results
         ss_param_learncps=ss_param_temp
         # 1) remove the w_cp_param part
@@ -379,7 +392,7 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
   }
   if(!(length(max_iteration)==1 & is.numeric(max_iteration) & max_iteration>0 & max_iteration%%1==0)){stop("max_iteration is not a positive integer!")}
   if(!(dlm_option %in% c("smooth","filter") & length(dlm_option)==1)){stop("dlm_option can either be filter or smooth")}
-  
+
   # functions to build up statespace model, which certains terms to be estimates as NA
   # the items in u are: [1:length(AR1_coeffi)] terms -> logit(autocorrelation) for all AR(1) coefficients
   #                                                     default value is 0=exp(0.5)/(1+exp(0.5))
@@ -460,7 +473,7 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
   get.filter_result=function(out_filter,formula_var,AR1_coeffi,rw_coeffi,w_cp_param){
     # organize result
     result_var_names=c("(Intercept)",formula_var)
-    
+
     if(is.null(w_cp_param)){
       Estimate=Std.Error=rep(NA,length(formula_var)+1)
       w_cp_param_variables=NULL
@@ -475,7 +488,7 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
                                paste(w_cp_param[[rr]]$variable,"(period",1:(length(w_cp_param[[rr]]$changepoints)+1),")",sep=""))
         if((pointer_id+1)<=length(result_var_names)){
           result_var_names_new=c(result_var_names_new,result_var_names[(pointer_id+1):length(result_var_names)])
-        }                       
+        }
       }
     }
     last_id=nrow(out_filter$m) # one more than nrow(data_ss_new)
@@ -509,7 +522,7 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
     out_smooth=dlmSmooth(out_filter)
     # organize result
     result_var_names=c("(Intercept)",formula_var)
-    
+
     if(is.null(w_cp_param)){
       Estimate=Std.Error=rep(NA,length(formula_var)+1)
       w_cp_param_variables=NULL
@@ -524,7 +537,7 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
                                paste(w_cp_param[[rr]]$variable,"(period",1:(length(w_cp_param[[rr]]$changepoints)+1),")",sep=""))
         if((pointer_id+1)<=length(result_var_names)){
           result_var_names_new=c(result_var_names_new,result_var_names[(pointer_id+1):length(result_var_names)])
-        }                       
+        }
       }
     }
     last_id=nrow(out_smooth$s) # one more than nrow(data_ss)
@@ -554,20 +567,20 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
     rownames(result)=result_var_names_new
     return(result)
   }
-  
-  # ------------------- main part (begin)---------------------- #  
+
+  # ------------------- main part (begin)---------------------- #
   # 1. given data without missing values in the covariates -> fit state space model
   # 2. if cpts is not given, alternate between i)  learn cpts
   #                                            ii) refit state sapce model
   #    until convergence
-  
+
   # 1. find MLE for init, build up spacestate model, and get filter states
   if(printFlag){
     cat("==============================================================================\n")
     cat("Build statespace model with unknown variance and auto-correlation terms estimated.\n")
     cat("\n The initial m0, C0, and inits given by the users is:\n m0: ",m0,
         "\n C0: ",C0,
-        "\n inits: ",inits, 
+        "\n inits: ",inits,
         ", or after transformation is: ")
     if(length(AR1_coeffi)>0){
       cat(c(exp(inits[1:length(AR1_coeffi)])/(1+exp(inits[1:length(AR1_coeffi)])),exp(inits[(length(AR1_coeffi)+1):length(inits)])))
@@ -577,10 +590,10 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
     cat("\n")
   }
   #if(printFlag){print(buildCamp(inits))}
-  outMLE=dlmMLE(data_ss$y,parm=inits,buildCamp) 
+  outMLE=dlmMLE(data_ss$y,parm=inits,buildCamp)
   out_filter=dlmFilter(data_ss$y,buildCamp(outMLE$par))
   out_smooth=dlmSmooth(out_filter)
-  
+
   iter=1
   # added for changepoints(begin)
   if(!is.null(w_cp_param)){
@@ -625,10 +638,10 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
         for(ii in 1:length(w_cp_param)){
           w_cp_param[[ii]][["changepoints"]]=w_cps_new
         }
-        
-        outMLE_temp=dlmMLE(data_ss$y,parm=inits,buildCamp) 
+
+        outMLE_temp=dlmMLE(data_ss$y,parm=inits,buildCamp)
         out_filter_temp=dlmFilter(data_ss$y,buildCamp(outMLE_temp$par))
-        
+
         iter=iter+1
         # check if it never converges
         if(convergence==F & iter > max_iteration){
@@ -642,14 +655,14 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
     }else{stop("Error in w_cp_param after fitting: fixed_cpts are not all T or all F.")}
   }
   # added for changepoints (end)
-  
+
   if(dlm_option=="smooth"){
     result=get.smooth_result(out_filter=out_filter,formula_var=formula_var,AR1_coeffi=AR1_coeffi,rw_coeffi=rw_coeffi,w_cp_param=w_cp_param)
   }else if(dlm_option=="filter"){
     result=get.filter_result(out_filter=out_filter,formula_var=formula_var,AR1_coeffi=AR1_coeffi,rw_coeffi=rw_coeffi,w_cp_param=w_cp_param)
   }
   if(printFlag){print(result)}
-  
+
   # organize return
   if(!is.null(w_cp_param) & all(unlist(lapply(1:length(w_cp_param), function(cc5){w_cp_param[[cc5]]$fixed_cpts==F})))){
     estimated_cpts=w_cps_new
@@ -658,4 +671,4 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
   }
   # output result
   return(list(result=result,estimated_cpts=estimated_cpts,out_filter=out_filter,iter=iter))
-} 
+}

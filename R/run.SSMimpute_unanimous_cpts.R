@@ -46,7 +46,6 @@
 #' @return A list
 #' @export
 #' @import changepoint dlm dplyr
-#' @examples
 run.SSMimpute_unanimous_cpts=function(data_ss_ori,formula_var,ss_param_temp,
                                       initial_imputation_option="StructTS",estimate_convergence_cri=0.01,lik_convergence_cri=0.01,stepsize_for_newpart=1/3,max_iteration=100,
                                       cpt_learning_param=list(cpt_method="mean",burnin=1/10,mergeband=20,convergence_cri=15),
