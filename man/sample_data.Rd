@@ -19,6 +19,6 @@ A data frame with 100 rows and 2 variables:
 sample_data
 }
 \description{
-test sample data
+A sample data set for imputation
 }
 \keyword{datasets}
