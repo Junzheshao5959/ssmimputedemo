@@ -45,7 +45,10 @@
 #'
 #' @return A list
 #' @export
-#' @import changepoint dlm dplyr
+#' @importFrom stats rnorm
+#' @importFrom utils head
+#' @importFrom MASS mvrnorm
+#' @import changepoint dlm dplyr tidyverse imputeTS crayon
 run.SSMimpute_unanimous_cpts=function(data_ss_ori,formula_var,ss_param_temp,
                                       initial_imputation_option="StructTS",estimate_convergence_cri=0.01,lik_convergence_cri=0.01,stepsize_for_newpart=1/3,max_iteration=100,
                                       cpt_learning_param=list(cpt_method="mean",burnin=1/10,mergeband=20,convergence_cri=15),
@@ -442,7 +445,7 @@ run.SSMimpute_unanimous_cpts=function(data_ss_ori,formula_var,ss_param_temp,
           if(printFlag){plot(cpt_temp)}
           w_cps_new=c(w_cps_new,cpts(cpt_temp)+start_pt-1)
         }
-        w_cps_new=merge.closepoints(points=w_cps_new,band=mergeband)
+        w_cps_new=merge_closepoints(points=w_cps_new,band=mergeband)
         if(printFlag){cat(red("The inital guess of changepoints are:",w_cps_new,"\n"))}
         for(ff in 1:length(w_cp_param)){
           w_cp_param[[ff]][["changepoints"]]=w_cps_new
@@ -738,7 +741,7 @@ run.SSMimpute_unanimous_cpts=function(data_ss_ori,formula_var,ss_param_temp,
             }
           }
         }
-        w_cps_new=merge.closepoints(w_cps_new,band=mergeband)
+        w_cps_new=merge_closepoints(w_cps_new,band=mergeband)
         cat(red("The changepoints are:"),w_cps_new,"; ")
         if(length(w_cps_new)==w_cp_param[[1]]$segments-1){
           if(all(abs(w_cp_param[[1]][["changepoints"]]-w_cps_new)<cpts_convergence_cri)){

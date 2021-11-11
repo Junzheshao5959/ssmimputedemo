@@ -3,12 +3,12 @@
 \docType{data}
 \name{sample_data}
 \alias{sample_data}
-\title{test sample data}
+\title{Test sample data}
 \format{
-A data frame with 100 rows and 2 variables:
+A data frame with 999 rows and 8 variables:
 \describe{
-  \item{x}{x}
-  \item{y}{x}
+  \item{x}{the index}
+  \item{y}{outcome}
   ...
 }
 }
@@ -19,6 +19,6 @@ A data frame with 100 rows and 2 variables:
 sample_data
 }
 \description{
-A sample data set for imputation
+A sample data set for imputation test
 }
 \keyword{datasets}

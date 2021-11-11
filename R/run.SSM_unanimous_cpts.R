@@ -10,7 +10,10 @@
 #'
 #' @return
 #' @export
-#' @import dplyr changepoint dlm
+#' @importFrom stats rnorm
+#' @importFrom utils head
+#' @importFrom MASS mvrnorm
+#' @import dplyr dlm tidyverse imputeTS crayon changepoint
 run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=100,
                                 cpt_learning_param=list(cpt_method="mean",burnin=1/10,mergeband=20,convergence_cri=10),
                                 dlm_option="smooth",
@@ -366,7 +369,7 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
           if(printFlag){plot(cpt_temp)}
           w_cps_new=c(w_cps_new,cpts(cpt_temp)+start_pt-1)
         }
-        w_cps_new=merge.closepoints(points=w_cps_new,band=mergeband)
+        w_cps_new=merge_closepoints(points=w_cps_new,band=mergeband)
         if(printFlag){cat(red("The inital guess of changepoints are:"),w_cps_new,"\n")}
         for(ff in 1:length(w_cp_param)){
           w_cp_param[[ff]][["changepoints"]]=w_cps_new
@@ -629,7 +632,7 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
             }
           }
         }
-        w_cps_new=merge.closepoints(w_cps_new,band=mergeband)
+        w_cps_new=merge_closepoints(w_cps_new,band=mergeband)
         if(length(w_cps_new)==w_cp_param[[1]]$segments-1){
           if(all(abs(w_cp_param[[1]][["changepoints"]]-w_cps_new)<cpts_convergence_cri)){
             convergence=T

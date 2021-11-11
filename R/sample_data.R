@@ -4,7 +4,7 @@
 #'
 #' @format A data frame with 999 rows and 8 variables:
 #' \describe{
-#'   \item{X}{the index}
+#'   \item{x}{the index}
 #'   \item{y}{outcome}
 #'   ...
 #' }
