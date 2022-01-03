@@ -48,7 +48,9 @@
 #' @importFrom stats rnorm
 #' @importFrom utils head
 #' @importFrom MASS mvrnorm
-#' @import changepoint dlm dplyr tidyverse imputeTS crayon
+#' @importFrom crayon red
+#' @importFrom crayon blue
+#' @import changepoint dlm dplyr tidyverse imputeTS
 run.SSMimpute_unanimous_cpts=function(data_ss_ori,formula_var,ss_param_temp,
                                       initial_imputation_option="StructTS",estimate_convergence_cri=0.01,lik_convergence_cri=0.01,stepsize_for_newpart=1/3,max_iteration=100,
                                       cpt_learning_param=list(cpt_method="mean",burnin=1/10,mergeband=20,convergence_cri=15),
@@ -162,7 +164,7 @@ run.SSMimpute_unanimous_cpts=function(data_ss_ori,formula_var,ss_param_temp,
   #                       v_cp_param=NULL,
   #                       w_cp_param=list(list(variable="x","segments"=3,changepoints=c(400,700),fixed_cpts=T)),
   #                       max_iteration=max_iteration)
-  # Example 6.2: (periodic coefficient for X and X_1 of 3 uncertain known perios)
+  # Example 6.2: (periodic coefficient for X and X_1 of 3 uncertain known periods)
   #              ss_param=list(inits=c(log(1)),m0=c(40,0.5,-1.5,-0.5,1),C0=diag(rep(10^3),5),
   #                            AR1_coeffi=NULL,rw_coeffi=NULL,
   #                            v_cp_param=NULL,
@@ -391,7 +393,7 @@ run.SSMimpute_unanimous_cpts=function(data_ss_ori,formula_var,ss_param_temp,
         # if [changepoints] and [fixed_cpts] both do not exist for each varible
         if(printFlag){cat("The changepoints of variables, whose coefficients shift over time, are not given.\n")}
         ######### initialization of changepoints of W (part II of initialization) ##########
-        # if the changepoints don't exist, we ask the corresponding coeffi be randome walk, and then learn changepoints from the results
+        # if the changepoints don't exist, we ask the corresponding coeffi be random walk, and then learn changepoints from the results
         ss_param_learncps=ss_param_temp
         # 1) remove the w_cp_param part
         ss_param_learncps$w_cp_param=NULL
@@ -649,7 +651,7 @@ run.SSMimpute_unanimous_cpts=function(data_ss_ori,formula_var,ss_param_temp,
     return(result)
   }
   missing_y_sample=function(data_temp,out_filter_temp,dlm_option="smooth",stepsize_for_newpart=1){
-    out_smooth_temp=dlmSmooth(out_filter_temp) # E step
+    out_smooth_temp=dlmSmooth(out_filter_temp)
     Fpart_temp=cbind(1,data_temp[,formula_var])
     if(!all(out_filter_temp$f-rowSums(Fpart_temp*out_filter_temp$a[,which(out_filter_temp$mod$FF[1,]==1)]) < 1E-10)){
       stop("The time-varying F matrix has not been updated correctly.")
@@ -818,7 +820,7 @@ run.SSMimpute_unanimous_cpts=function(data_ss_ori,formula_var,ss_param_temp,
   }else if(dlm_option=="smooth"){
     result_convergence=get.smooth_result(out_filter=out_filter,formula_var=formula_var,AR1_coeffi=AR1_coeffi,rw_coeffi=rw_coeffi,w_cp_param=w_cp_param)
   }
-
+# Rubin's Rule
   pool.SSMimpute_mp=function(result){
     # calculate mean of coefficients
     name=rownames(result[[as.character(1)]])
@@ -971,5 +973,6 @@ run.SSMimpute_unanimous_cpts=function(data_ss_ori,formula_var,ss_param_temp,
               result_convergence_mp_addV=result_convergence_mp_addV,
               estimated_cpts=estimated_cpts,
               out_filter=out_filter,
-              iter=iter))
+              iter=iter,
+              data_temp = data_temp))
 }

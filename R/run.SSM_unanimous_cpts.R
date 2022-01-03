@@ -13,7 +13,9 @@
 #' @importFrom stats rnorm
 #' @importFrom utils head
 #' @importFrom MASS mvrnorm
-#' @import dplyr dlm tidyverse imputeTS crayon changepoint
+#' @importFrom crayon red
+#' @importFrom crayon blue
+#' @import changepoint dlm dplyr tidyverse imputeTS
 run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=100,
                                 cpt_learning_param=list(cpt_method="mean",burnin=1/10,mergeband=20,convergence_cri=10),
                                 dlm_option="smooth",
@@ -226,7 +228,7 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
         # when initial guess of changepoints of V is unkwown
         ######### initialize changepoints for V (part I of initialization)  #########
         if(sum(is.na(data_ss$y))!=0){
-          # for the ignore case
+          # for the ignore case ?
           cpt_v_temp=cpt.var(na_kalman(data_ss$y,model="StructTS"),penalty="Manual",Q=v_cp_param_learncps$segments-1, method="BinSeg")
         }else{
           # for the full and cc case
@@ -403,6 +405,8 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
   #                     [2*length(AR1_coeffi)+1:2*length(AR1_coeffi)+length(rw_coeffi)] -> log(variance for Wj) for random walk coefficients
   #                     [2*length(AR1_coeffi)+length(rw_coeffi)+1:2*length(AR1_coeffi)+length(rw_coeffi)+length(v_changepoint)] -> (possibly sereis of) log(variance for V)
   #                     [2*length(AR1_coeffi)+1:3*length(AR1_coeffi)] -> log(variance for Wj) for random walk coefficients
+
+  # page 124
   buildCamp=function(u){
     model=dlmModReg(data_ss[,formula_var],dV=exp(u[2*length(AR1_coeffi)+length(rw_coeffi)+1]))
     FF=matrix(c(model$FF,rep(0,length(AR1_coeffi))),nrow=1)
@@ -495,7 +499,7 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
       }
     }
     last_id=nrow(out_filter$m) # one more than nrow(data_ss_new)
-    # for fixed coefficient -> pick the last timepoint estimation
+    # for fixed coefficient -> pick the last timepoint estimation?
     # for AR(1) coefficient -> pick the average of 1/6 to 6/6 timepoints
     # for random walk -> pick the last timepoint estimation, since any point doesn't make sense
     pos=1
@@ -643,7 +647,7 @@ run.SSM_unanimous_cpts=function(data_ss,formula_var,ss_param_temp,max_iteration=
         }
 
         outMLE_temp=dlmMLE(data_ss$y,parm=inits,buildCamp)
-        out_filter_temp=dlmFilter(data_ss$y,buildCamp(outMLE_temp$par))
+        out_filter_temp=dlmFilter(data_ss$y,buildCamp(outMLE_temp$par))#Build
 
         iter=iter+1
         # check if it never converges
