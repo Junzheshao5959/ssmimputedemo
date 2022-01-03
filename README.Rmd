@@ -12,6 +12,8 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 library(knitr)
+library(crayon)
+library(MASS)
 ```
 
 # ssmimputedemo
@@ -41,7 +43,7 @@ This is a basic example which shows you how to solve a common problem:
 ```{r example}
 library(ssmimputedemo)
 ## basic example code
-ssmimputedemo::hello("Junzhe")
+ssmimputedemo::hello("world")
 ```
 
 Check the functions and dataset here:
@@ -49,10 +51,12 @@ Check the functions and dataset here:
 ?data_space_SSMimpute
 ?run.SSMimpute_unanimous_cpts
 kable(head(data_space_SSMimpute))
+imputeTS::ggplot_na_distribution(data_space_SSMimpute$y, color_missing = "pink",color_missing_border = "pink", alpha_missing = 0.9)
+imputeTS::ggplot_na_distribution(data_space_SSMimpute$x, color_missing = "pink",color_missing_border = "pink", alpha_missing = 0.9)
 ```
 
 Here is a very basic example when possible change points are same across variables
-```{r}
+```{r echo=FALSE}
 printFlag=T
 formula="y~y_1+x+x_1+c"
 formula_var=unlist(strsplit(unlist(strsplit(formula,"~"))[2],"+",fixed=T))
@@ -71,6 +75,10 @@ result_statespace_SSMimpute1=run.SSMimpute_unanimous_cpts(data_ss_ori=data_space
                                                          cpt_initial_guess_option="ignore",
                                                          dlm_option="smooth",m=5,seed=1,printFlag=F)
 
-result_statespace_SSMimpute1$estimated_cpts
+
+
+```
+```{r}
+kable(result_statespace_SSMimpute1$result_convergence)
 ```
 
