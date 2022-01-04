@@ -25,9 +25,9 @@ run.SSMimpute_unanimous_cpts(
 \arguments{
 \item{data_ss_ori}{contains all information, and only selected variables in formula_var enters the statespace model}
 
-\item{formula_var}{select variables from <data_ss_ori> into the statespace model}
+\item{formula_var}{select variables from <data_ss_ori> into the state space model}
 
-\item{ss_param_temp}{<m0>: initial values for states}
+\item{ss_param_temp}{A list of parameters, details below}
 
 \item{initial_imputation_option}{for the first iteration of imputing missing y, choose StructTS or others, and can't be "ignore"}
 
@@ -50,6 +50,8 @@ run.SSMimpute_unanimous_cpts(
 \item{seed}{random seed}
 
 \item{printFlag}{whether we need to print the Flag plots.}
+
+\item{m0}{initial values for states <C0>: initial values for variance of states <inits>: initial values for the estimating of all NA terms, via maximizing likelihood}
 }
 \value{
 A list

@@ -10,10 +10,10 @@ A data frame with 999 rows and 8 variables:
   \item{X}{index}
   \item{y}{outcome}
   \item{c}{covarites}
-  \item{c_1}{c value at X-1}
+  \item{c_1}{lagged c value}
   \item{x}{x value}
-  \item{x_1}{x value at X-1}
-  \item{y_1}{y value at X-1}
+  \item{x_1}{lagged x value}
+  \item{y_1}{lagged y value}
   \item{Date}{Date of real world}
   ...
 }
