@@ -45,7 +45,7 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="articles/SSM_vignette.html">Exmaple1</a>
+    <a class="dropdown-item" href="articles/SSM_vignette.html">SSM_vignette</a>
   </div>
 </li>
       </ul>
@@ -80,10 +80,7 @@
 <p>You can install the development version of ssmimputedemo like so:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span>
-<span class="co">#&gt; Loading required package: usethis</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"Junzheshao5959/ssmimputedemo"</span><span class="op">)</span>
-<span class="co">#&gt; Skipping install of 'ssmimputedemo' from a github remote, the SHA1 (3498fd17) has not changed since last install.</span>
-<span class="co">#&gt;   Use `force = TRUE` to force installation</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"Junzheshao5959/ssmimputedemo"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
@@ -91,50 +88,12 @@
 <p>This is a basic example which shows you how to solve a common problem:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Junzheshao5959/ssmimputedemo" class="external-link">ssmimputedemo</a></span><span class="op">)</span>
-<span class="co">#&gt; Loading required package: tibble</span>
-<span class="co">#&gt; Loading required package: changepoint</span>
-<span class="co">#&gt; Loading required package: zoo</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'zoo'</span>
-<span class="co">#&gt; The following objects are masked from 'package:base':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     as.Date, as.Date.numeric</span>
-<span class="co">#&gt; Successfully loaded changepoint package version 2.2.2</span>
-<span class="co">#&gt;  NOTE: Predefined penalty values changed in version 2.2.  Previous penalty values with a postfix 1 i.e. SIC1 are now without i.e. SIC and previous penalties without a postfix i.e. SIC are now with a postfix 0 i.e. SIC0. See NEWS and help files for further details.</span>
-<span class="co">#&gt; Loading required package: dlm</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'dlm'</span>
-<span class="co">#&gt; The following object is masked from 'package:crayon':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     %+%</span>
-<span class="co">#&gt; Loading required package: tidyverse</span>
-<span class="co">#&gt; ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</span>
-<span class="co">#&gt; ✓ ggplot2 3.3.5     ✓ dplyr   1.0.7</span>
-<span class="co">#&gt; ✓ tidyr   1.1.4     ✓ stringr 1.4.0</span>
-<span class="co">#&gt; ✓ readr   2.1.1     ✓ forcats 0.5.1</span>
-<span class="co">#&gt; ✓ purrr   0.3.4</span>
-<span class="co">#&gt; ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──</span>
-<span class="co">#&gt; x ggplot2::%+%()  masks dlm::%+%(), crayon::%+%()</span>
-<span class="co">#&gt; x dplyr::filter() masks stats::filter()</span>
-<span class="co">#&gt; x dplyr::lag()    masks stats::lag()</span>
-<span class="co">#&gt; x dplyr::select() masks MASS::select()</span>
-<span class="co">#&gt; Loading required package: imputeTS</span>
-<span class="co">#&gt; Registered S3 method overwritten by 'quantmod':</span>
-<span class="co">#&gt;   method            from</span>
-<span class="co">#&gt;   as.zoo.data.frame zoo</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'imputeTS'</span>
-<span class="co">#&gt; The following object is masked from 'package:zoo':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     na.locf</span>
-<span class="co">#&gt; Warning: replacing previous import 'crayon::%+%' by 'dlm::%+%' when loading</span>
-<span class="co">#&gt; 'ssmimputedemo'</span>
-<span class="co">#&gt; Warning: replacing previous import 'MASS::select' by 'dplyr::select' when</span>
-<span class="co">#&gt; loading 'ssmimputedemo'</span>
 <span class="co">## basic example code</span>
-<span class="fu">ssmimputedemo</span><span class="fu">::</span><span class="fu"><a href="reference/hello.html">hello</a></span><span class="op">(</span><span class="st">"world"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "Hello world, this is the word world!"</span></code></pre></div>
-<p>Check the functions and dataset here:</p>
+<span class="fu">ssmimputedemo</span><span class="fu">::</span><span class="fu"><a href="reference/hello.html">hello</a></span><span class="op">(</span><span class="st">"Apple"</span><span class="op">)</span>
+<span class="co">#&gt; [1] "Hello Apple, this is the word world!"</span></code></pre></div>
+<p>Here is a very basic example when possible change points are same across variables. We considered the following model.<br><em>Y</em><sub><em>t</em></sub> = <em>β</em><sub>0, <em>t</em></sub> + 0.5<em>Y</em><sub><em>t</em> − 1</sub> + <em>β</em><sub>1, <em>t</em></sub><em>X</em><sub><em>t</em></sub> − 0.5<em>X</em><sub><em>t</em> − 1</sub> − <em>β</em><sub><em>c</em>, <em>t</em></sub><em>C</em><sub><em>t</em></sub> + <em>v</em><sub><em>t</em></sub>,  <em>v</em><sub><em>t</em></sub> ∼ <em>N</em>(0, 1)</p>
+<p>where <em>β</em><sub>0, <em>t</em></sub> follows a random walk as <em>β</em><sub>0, <em>t</em></sub> = 40 + <em>β</em><sub>0, <em>t</em> − 1</sub> + <em>w</em><sub><em>t</em></sub> and <em>w</em><sub><em>t</em></sub> ∼ <em>N</em>(0, 0.25), and <em>β</em><sub><em>c</em>, <em>t</em></sub> =  − 1 for <em>t</em> = 1, …, 400, <em>β</em><sub><em>c</em>, <em>t</em></sub> =  − 2 for <em>t</em> = 401, …, 700, and <em>β</em><sub><em>c</em>, <em>t</em></sub> = 0 for <em>t</em> = 701, …, 1000.</p>
+<p>Here are plots for the sample data set <code>data_space_SSMimpute</code> <img src="https://cdn.mathpix.com/snip/images/Qep9kS6HXGDXOtN5OzqeNIEJdAwtmSbMO3y7vjmUXiQ.original.fullsize.png"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">?</span><span class="va">data_space_SSMimpute</span>
 <span class="op">?</span><span class="va">run.SSMimpute_unanimous_cpts</span>
@@ -215,519 +174,266 @@
 </table>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">imputeTS</span><span class="fu">::</span><span class="fu"><a href="https://SteffenMoritz.github.io/imputeTS/reference/ggplot_na_distribution.html" class="external-link">ggplot_na_distribution</a></span><span class="op">(</span><span class="va">data_space_SSMimpute</span><span class="op">$</span><span class="va">y</span>, color_missing <span class="op">=</span> <span class="st">"pink"</span>,color_missing_border <span class="op">=</span> <span class="st">"pink"</span>, alpha_missing <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-3-1.png" width="100%"></p>
+<p><img src="reference/figures/README-unnamed-chunk-4-1.png" width="100%"></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">imputeTS</span><span class="fu">::</span><span class="fu"><a href="https://SteffenMoritz.github.io/imputeTS/reference/ggplot_na_distribution.html" class="external-link">ggplot_na_distribution</a></span><span class="op">(</span><span class="va">data_space_SSMimpute</span><span class="op">$</span><span class="va">x</span>, color_missing <span class="op">=</span> <span class="st">"pink"</span>,color_missing_border <span class="op">=</span> <span class="st">"pink"</span>, alpha_missing <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-3-2.png" width="100%"></p>
-<p>Here is a very basic example when possible change points are same across variables</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   X       Date        y         x        c      y_1       x_1      c_1</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2 2019-02-13       NA 10.736508 6.501732 44.39751  7.626688 5.838465</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 3 2019-02-14       NA  8.511424 5.714511       NA 10.736508 6.501732</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 4 2019-02-15       NA  7.149594 6.586657       NA  8.511424 5.714511</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 5 2019-02-16 42.84296  9.272445 5.992080       NA  7.149594 6.586657</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 6 2019-02-17 39.27642 10.543667 8.265307 42.84296  9.272445 5.992080</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 7 2019-02-18       NA 10.075845 7.783034 39.27642 10.543667 8.265307</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Note: ''changepoints'' of W is given a initial guess, but need to be updated according to the fitting result.</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 400 702 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=1</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 487.5552 </span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 30.94004 0.6093355 -0.8586126 -1.613339 -0.7587319 -0.545232 -0.7644105 -1.499062 -0.7139168 </span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.437974 0.02048966 0.09064807 4.473118 0.08161007 0.06252536 0.08337286 4.473225 0.09410379 </span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 400 702 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=2</span></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 485.8369 </span></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 31.52225 0.6024681 -0.9372688 -1.668564 -0.8285003 -0.4753108 -0.8076595 -1.547974 -0.7649317 </span></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.453284 0.02043344 0.08997025 0.0919521 0.08186892 0.06346528 0.08258081 0.09777285 0.09426038 </span></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 400 702 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=3</span></span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 488.3624 </span></span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 32.29845 0.5898527 -0.9922455 -1.75992 -0.8744846 -0.4399498 -0.8369692 -1.604315 -0.8052181 </span></span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.475525 0.02039999 0.09021584 0.09147528 0.08278487 0.06449663 0.08268061 0.09789813 0.09520443 </span></span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 400 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=4</span></span>
-<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 491.336 </span></span>
-<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 32.97079 0.5779239 -1.029917 -1.830047 -0.9054598 -0.4205036 -0.8566146 -1.648264 -0.8352174 </span></span>
-<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.493455 0.02033848 0.09064604 0.09140643 0.08365923 0.0653311 0.08297888 0.09824577 0.09612044 </span></span>
-<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 400 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=5</span></span>
-<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 493.796 </span></span>
-<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 33.49209 0.5681799 -1.055684 -1.881979 -0.9267194 -0.4090491 -0.8699414 -1.680968 -0.8571371 </span></span>
-<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.505875 0.02026015 0.09104979 0.09145218 0.0843467 0.06595068 0.08327427 0.09858516 0.09683886 </span></span>
-<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 400 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=6</span></span>
-<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 495.4549 </span></span>
-<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 33.86069 0.5608674 -1.073655 -1.920032 -0.9414366 -0.4014192 -0.8791865 -1.704891 -0.8721622 </span></span>
-<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.513521 0.02017296 0.09133401 0.0914731 0.08481289 0.06636973 0.0834773 0.09881432 0.09731878 </span></span>
-<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 400 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=7</span></span>
-<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 496.596 </span></span>
-<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.12778 0.5553727 -1.08615 -1.947922 -0.9517228 -0.3963921 -0.8855817 -1.722217 -0.8828088 </span></span>
-<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.518234 0.02009205 0.09153873 0.09148333 0.0851351 0.06665638 0.08362141 0.09897508 0.0976472 </span></span>
-<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 399 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=8</span></span>
-<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 497.3631 </span></span>
-<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.32236 0.551265 -1.094861 -1.968419 -0.9589357 -0.3930584 -0.8899828 -1.734704 -0.8904061 </span></span>
-<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.521105 0.02002153 0.09168594 0.09148219 0.08535497 0.06684916 0.08372013 0.09908319 0.09786949 </span></span>
-<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 399 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=9</span></span>
-<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 498.0563 </span></span>
-<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.43251 0.5497862 -1.098647 -1.985933 -0.9664668 -0.3889992 -0.8917387 -1.74379 -0.8981112 </span></span>
-<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.521526 0.0199219 0.09184378 0.09147061 0.08556088 0.06711641 0.0838413 0.09928398 0.09801794 </span></span>
-<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 399 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=10</span></span>
-<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 498.4464 </span></span>
-<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.54591 0.5473359 -1.103019 -1.997325 -0.9698508 -0.3878761 -0.8937729 -1.750368 -0.9020829 </span></span>
-<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.522888 0.01987321 0.09191709 0.09147192 0.08567326 0.06720261 0.08389118 0.09934099 0.09813381 </span></span>
-<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 399 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=11</span></span>
-<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 498.6725 </span></span>
-<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.62968 0.5455132 -1.10612 -2.005751 -0.9722071 -0.3871605 -0.8951277 -1.755022 -0.9049532 </span></span>
-<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.523686 0.0198325 0.09195908 0.09146271 0.08574399 0.06725293 0.08391718 0.09937109 0.09820649 </span></span>
-<span id="cb6-152"><a href="#cb6-152" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-156"><a href="#cb6-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-157"><a href="#cb6-157" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-158"><a href="#cb6-158" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-159"><a href="#cb6-159" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-160"><a href="#cb6-160" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 399 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-161"><a href="#cb6-161" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=12</span></span>
-<span id="cb6-162"><a href="#cb6-162" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 498.7859 </span></span>
-<span id="cb6-163"><a href="#cb6-163" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.69166 0.5441601 -1.108326 -2.011997 -0.9738442 -0.3867022 -0.8960096 -1.758288 -0.9070326 </span></span>
-<span id="cb6-164"><a href="#cb6-164" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.524123 0.01979874 0.09197922 0.09144686 0.08578592 0.06727902 0.08392673 0.09938271 0.09824935 </span></span>
-<span id="cb6-165"><a href="#cb6-165" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-166"><a href="#cb6-166" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-167"><a href="#cb6-167" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-168"><a href="#cb6-168" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-169"><a href="#cb6-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-171"><a href="#cb6-171" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-172"><a href="#cb6-172" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 399 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-174"><a href="#cb6-174" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=13</span></span>
-<span id="cb6-175"><a href="#cb6-175" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 498.8238 </span></span>
-<span id="cb6-176"><a href="#cb6-176" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.73748 0.5431581 -1.109899 -2.016636 -0.9749792 -0.3864041 -0.8965668 -1.760554 -0.9085422 </span></span>
-<span id="cb6-177"><a href="#cb6-177" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.524331 0.0197709 0.09198461 0.09142727 0.08580825 0.06728919 0.08392536 0.0993821 0.09827191 </span></span>
-<span id="cb6-178"><a href="#cb6-178" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-179"><a href="#cb6-179" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-180"><a href="#cb6-180" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-181"><a href="#cb6-181" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-182"><a href="#cb6-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-183"><a href="#cb6-183" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-184"><a href="#cb6-184" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-185"><a href="#cb6-185" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-186"><a href="#cb6-186" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 399 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-187"><a href="#cb6-187" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=14</span></span>
-<span id="cb6-188"><a href="#cb6-188" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 498.8132 </span></span>
-<span id="cb6-189"><a href="#cb6-189" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.7713 0.5424189 -1.111023 -2.020088 -0.9757645 -0.3862043 -0.8969045 -1.762102 -0.9096399 </span></span>
-<span id="cb6-190"><a href="#cb6-190" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.524394 0.01974805 0.09198051 0.09140604 0.08581754 0.0672893 0.08391718 0.09937384 0.09828097 </span></span>
-<span id="cb6-191"><a href="#cb6-191" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-192"><a href="#cb6-192" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-193"><a href="#cb6-193" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-194"><a href="#cb6-194" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-195"><a href="#cb6-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-196"><a href="#cb6-196" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-197"><a href="#cb6-197" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-198"><a href="#cb6-198" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 399 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-200"><a href="#cb6-200" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=15</span></span>
-<span id="cb6-201"><a href="#cb6-201" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 498.7733 </span></span>
-<span id="cb6-202"><a href="#cb6-202" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.79617 0.5418756 -1.111827 -2.02266 -0.976307 -0.3860643 -0.8970968 -1.76314 -0.9104388 </span></span>
-<span id="cb6-203"><a href="#cb6-203" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.524369 0.01972937 0.09197074 0.09138468 0.08581848 0.06728343 0.08390516 0.09936124 0.09828138 </span></span>
-<span id="cb6-204"><a href="#cb6-204" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-205"><a href="#cb6-205" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-206"><a href="#cb6-206" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-207"><a href="#cb6-207" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-208"><a href="#cb6-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-209"><a href="#cb6-209" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-210"><a href="#cb6-210" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-211"><a href="#cb6-211" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-212"><a href="#cb6-212" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 399 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-213"><a href="#cb6-213" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=16</span></span>
-<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 498.7176 </span></span>
-<span id="cb6-215"><a href="#cb6-215" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.81438 0.5414783 -1.112403 -2.024578 -0.9766811 -0.3859607 -0.8971953 -1.763816 -0.9110208 </span></span>
-<span id="cb6-216"><a href="#cb6-216" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.524294 0.01971417 0.09195801 0.09136422 0.08581437 0.06727437 0.08389139 0.09934663 0.09827655 </span></span>
-<span id="cb6-217"><a href="#cb6-217" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-218"><a href="#cb6-218" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-219"><a href="#cb6-219" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-220"><a href="#cb6-220" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-221"><a href="#cb6-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-222"><a href="#cb6-222" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-223"><a href="#cb6-223" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-224"><a href="#cb6-224" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-225"><a href="#cb6-225" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 399 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-226"><a href="#cb6-226" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=17</span></span>
-<span id="cb6-227"><a href="#cb6-227" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 498.6554 </span></span>
-<span id="cb6-228"><a href="#cb6-228" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.82763 0.541189 -1.112816 -2.02601 -0.9769389 -0.3858796 -0.8972352 -1.764239 -0.9114448 </span></span>
-<span id="cb6-229"><a href="#cb6-229" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.524193 0.01970186 0.09194418 0.09134531 0.08580748 0.06726398 0.08387728 0.09933158 0.09826886 </span></span>
-<span id="cb6-230"><a href="#cb6-230" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-231"><a href="#cb6-231" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-232"><a href="#cb6-232" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-233"><a href="#cb6-233" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-234"><a href="#cb6-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-235"><a href="#cb6-235" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-236"><a href="#cb6-236" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-237"><a href="#cb6-237" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-238"><a href="#cb6-238" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 399 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-239"><a href="#cb6-239" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=18</span></span>
-<span id="cb6-240"><a href="#cb6-240" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 498.5929 </span></span>
-<span id="cb6-241"><a href="#cb6-241" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.83721 0.5409797 -1.113112 -2.027079 -0.9771164 -0.3858132 -0.8972401 -1.764488 -0.9117536 </span></span>
-<span id="cb6-242"><a href="#cb6-242" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.524083 0.01969194 0.09193046 0.09132832 0.08579936 0.06725345 0.08386376 0.09931711 0.09825991 </span></span>
-<span id="cb6-243"><a href="#cb6-243" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-244"><a href="#cb6-244" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-245"><a href="#cb6-245" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-246"><a href="#cb6-246" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-247"><a href="#cb6-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-248"><a href="#cb6-248" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-249"><a href="#cb6-249" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-250"><a href="#cb6-250" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-251"><a href="#cb6-251" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 399 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-252"><a href="#cb6-252" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=19</span></span>
-<span id="cb6-253"><a href="#cb6-253" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 498.5337 </span></span>
-<span id="cb6-254"><a href="#cb6-254" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.84409 0.540829 -1.113324 -2.027879 -0.9772386 -0.3857571 -0.8972255 -1.764619 -0.9119785 </span></span>
-<span id="cb6-255"><a href="#cb6-255" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.523975 0.01968398 0.0919176 0.09131338 0.08579099 0.06724349 0.08385134 0.09930382 0.09825074 </span></span>
-<span id="cb6-256"><a href="#cb6-256" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-257"><a href="#cb6-257" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-258"><a href="#cb6-258" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-259"><a href="#cb6-259" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-260"><a href="#cb6-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-261"><a href="#cb6-261" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-262"><a href="#cb6-262" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-263"><a href="#cb6-263" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-264"><a href="#cb6-264" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 399 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-265"><a href="#cb6-265" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=20</span></span>
-<span id="cb6-266"><a href="#cb6-266" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 498.4799 </span></span>
-<span id="cb6-267"><a href="#cb6-267" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.84897 0.5407212 -1.113475 -2.028478 -0.9773225 -0.3857088 -0.8972013 -1.764673 -0.9121419 </span></span>
-<span id="cb6-268"><a href="#cb6-268" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.523874 0.01967763 0.091906 0.09130051 0.08578299 0.06723449 0.08384032 0.099292 0.09824199 </span></span>
-<span id="cb6-269"><a href="#cb6-269" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-270"><a href="#cb6-270" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-271"><a href="#cb6-271" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-272"><a href="#cb6-272" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-273"><a href="#cb6-273" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-274"><a href="#cb6-274" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-275"><a href="#cb6-275" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-276"><a href="#cb6-276" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-277"><a href="#cb6-277" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 399 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-278"><a href="#cb6-278" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=21</span></span>
-<span id="cb6-279"><a href="#cb6-279" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 498.4327 </span></span>
-<span id="cb6-280"><a href="#cb6-280" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.85241 0.5406447 -1.113582 -2.028925 -0.9773802 -0.385667 -0.8971738 -1.764677 -0.9122605 </span></span>
-<span id="cb6-281"><a href="#cb6-281" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.523783 0.0196726 0.09189584 0.0912896 0.0857757 0.06722662 0.08383076 0.09928177 0.09823402 </span></span>
-<span id="cb6-282"><a href="#cb6-282" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-283"><a href="#cb6-283" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-284"><a href="#cb6-284" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-285"><a href="#cb6-285" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-286"><a href="#cb6-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-287"><a href="#cb6-287" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-288"><a href="#cb6-288" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-289"><a href="#cb6-289" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-290"><a href="#cb6-290" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 399 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-291"><a href="#cb6-291" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=22</span></span>
-<span id="cb6-292"><a href="#cb6-292" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 498.3921 </span></span>
-<span id="cb6-293"><a href="#cb6-293" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.85479 0.5405906 -1.113658 -2.02926 -0.9774198 -0.3856309 -0.8971466 -1.764652 -0.9123464 </span></span>
-<span id="cb6-294"><a href="#cb6-294" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.523704 0.01966863 0.09188715 0.09128047 0.08576927 0.06721989 0.08382265 0.09927309 0.09822701 </span></span>
-<span id="cb6-295"><a href="#cb6-295" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-296"><a href="#cb6-296" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-297"><a href="#cb6-297" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-298"><a href="#cb6-298" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-299"><a href="#cb6-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-300"><a href="#cb6-300" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-301"><a href="#cb6-301" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-302"><a href="#cb6-302" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-303"><a href="#cb6-303" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 399 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-304"><a href="#cb6-304" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=23</span></span>
-<span id="cb6-305"><a href="#cb6-305" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 498.3579 </span></span>
-<span id="cb6-306"><a href="#cb6-306" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.85643 0.5405528 -1.113711 -2.02951 -0.9774469 -0.3855999 -0.8971214 -1.76461 -0.9124083 </span></span>
-<span id="cb6-307"><a href="#cb6-307" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.523637 0.01966551 0.09187984 0.09127295 0.08576375 0.06721427 0.08381587 0.09926586 0.09822098 </span></span>
-<span id="cb6-308"><a href="#cb6-308" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-309"><a href="#cb6-309" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-310"><a href="#cb6-310" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-311"><a href="#cb6-311" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-312"><a href="#cb6-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-313"><a href="#cb6-313" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-314"><a href="#cb6-314" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-315"><a href="#cb6-315" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-316"><a href="#cb6-316" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 399 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-317"><a href="#cb6-317" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=24</span></span>
-<span id="cb6-318"><a href="#cb6-318" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 498.3295 </span></span>
-<span id="cb6-319"><a href="#cb6-319" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.85753 0.5405266 -1.113748 -2.029697 -0.9774654 -0.3855735 -0.8970994 -1.764562 -0.9124527 </span></span>
-<span id="cb6-320"><a href="#cb6-320" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.52358 0.01966308 0.0918738 0.09126681 0.08575911 0.06720963 0.0838103 0.09925991 0.0982159 </span></span>
-<span id="cb6-321"><a href="#cb6-321" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-322"><a href="#cb6-322" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-323"><a href="#cb6-323" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-324"><a href="#cb6-324" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-325"><a href="#cb6-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-326"><a href="#cb6-326" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-327"><a href="#cb6-327" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-328"><a href="#cb6-328" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-329"><a href="#cb6-329" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 399 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-330"><a href="#cb6-330" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=25</span></span>
-<span id="cb6-331"><a href="#cb6-331" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 498.3064 </span></span>
-<span id="cb6-332"><a href="#cb6-332" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.85825 0.5405085 -1.113774 -2.029836 -0.977478 -0.3855513 -0.8970806 -1.764512 -0.9124844 </span></span>
-<span id="cb6-333"><a href="#cb6-333" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.523534 0.01966119 0.09186887 0.09126186 0.08575526 0.06720587 0.08380577 0.09925509 0.09821169 </span></span>
-<span id="cb6-334"><a href="#cb6-334" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-335"><a href="#cb6-335" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-336"><a href="#cb6-336" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-337"><a href="#cb6-337" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-338"><a href="#cb6-338" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-339"><a href="#cb6-339" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-340"><a href="#cb6-340" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-341"><a href="#cb6-341" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-342"><a href="#cb6-342" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 399 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-343"><a href="#cb6-343" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=26</span></span>
-<span id="cb6-344"><a href="#cb6-344" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 498.2876 </span></span>
-<span id="cb6-345"><a href="#cb6-345" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.85871 0.5404962 -1.113791 -2.02994 -0.9774864 -0.3855327 -0.8970651 -1.764465 -0.9125068 </span></span>
-<span id="cb6-346"><a href="#cb6-346" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.523496 0.01965974 0.0918649 0.0912579 0.08575213 0.06720286 0.08380214 0.09925123 0.09820826 </span></span>
-<span id="cb6-347"><a href="#cb6-347" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-348"><a href="#cb6-348" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-349"><a href="#cb6-349" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-350"><a href="#cb6-350" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-351"><a href="#cb6-351" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-352"><a href="#cb6-352" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-353"><a href="#cb6-353" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-354"><a href="#cb6-354" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-355"><a href="#cb6-355" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 399 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-356"><a href="#cb6-356" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=27</span></span>
-<span id="cb6-357"><a href="#cb6-357" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 498.2727 </span></span>
-<span id="cb6-358"><a href="#cb6-358" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.85899 0.5404879 -1.113802 -2.030017 -0.9774921 -0.3855175 -0.8970524 -1.764422 -0.9125224 </span></span>
-<span id="cb6-359"><a href="#cb6-359" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.523466 0.01965862 0.09186173 0.09125476 0.0857496 0.06720046 0.08379924 0.09924816 0.09820549 </span></span>
-<span id="cb6-360"><a href="#cb6-360" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-361"><a href="#cb6-361" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-362"><a href="#cb6-362" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-363"><a href="#cb6-363" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-364"><a href="#cb6-364" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-365"><a href="#cb6-365" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-366"><a href="#cb6-366" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-367"><a href="#cb6-367" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-368"><a href="#cb6-368" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 399 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-369"><a href="#cb6-369" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=28</span></span>
-<span id="cb6-370"><a href="#cb6-370" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 498.2608 </span></span>
-<span id="cb6-371"><a href="#cb6-371" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.85916 0.5404824 -1.113809 -2.030073 -0.9774958 -0.385505 -0.8970422 -1.764383 -0.9125332 </span></span>
-<span id="cb6-372"><a href="#cb6-372" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.523442 0.01965776 0.09185922 0.09125229 0.08574759 0.06719858 0.08379696 0.09924575 0.09820329 </span></span>
-<span id="cb6-373"><a href="#cb6-373" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are not all fixed, and need to be updated.</span></span>
-<span id="cb6-374"><a href="#cb6-374" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-375"><a href="#cb6-375" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-376"><a href="#cb6-376" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-377"><a href="#cb6-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-378"><a href="#cb6-378" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
-<span id="cb6-379"><a href="#cb6-379" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
-<span id="cb6-380"><a href="#cb6-380" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
-<span id="cb6-381"><a href="#cb6-381" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The changepoints are: 399 700 ; changepoint convergence is TRUE </span></span>
-<span id="cb6-382"><a href="#cb6-382" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; i=29</span></span>
-<span id="cb6-383"><a href="#cb6-383" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; likelihood: 498.2516 </span></span>
-<span id="cb6-384"><a href="#cb6-384" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Estimate: 34.85924 0.5404788 -1.113814 -2.030115 -0.9774981 -0.385495 -0.8970342 -1.764351 -0.9125405 </span></span>
-<span id="cb6-385"><a href="#cb6-385" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Std.Error: 1.523423 0.01965711 0.09185726 0.09125037 0.085746 0.06719711 0.08379518 0.09924387 0.09820154 </span></span>
-<span id="cb6-386"><a href="#cb6-386" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; seed for multiple imputation after SSMimpute is: 1 </span></span>
-<span id="cb6-387"><a href="#cb6-387" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $`1`</span></span>
-<span id="cb6-388"><a href="#cb6-388" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               Estimate  Std.Error</span></span>
-<span id="cb6-389"><a href="#cb6-389" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept) 35.3494331 1.55852438</span></span>
-<span id="cb6-390"><a href="#cb6-390" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; y_1          0.5279469 0.01989110</span></span>
-<span id="cb6-391"><a href="#cb6-391" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period1)  -1.0935397 0.09359701</span></span>
-<span id="cb6-392"><a href="#cb6-392" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period2)  -2.0517124 0.09319332</span></span>
-<span id="cb6-393"><a href="#cb6-393" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period3)  -0.9840937 0.08763118</span></span>
-<span id="cb6-394"><a href="#cb6-394" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x_1         -0.4096755 0.06829847</span></span>
-<span id="cb6-395"><a href="#cb6-395" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period1)  -0.9004207 0.08541198</span></span>
-<span id="cb6-396"><a href="#cb6-396" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period2)  -1.7560565 0.10131370</span></span>
-<span id="cb6-397"><a href="#cb6-397" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period3)  -0.9042799 0.10025973</span></span>
-<span id="cb6-398"><a href="#cb6-398" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-399"><a href="#cb6-399" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $`2`</span></span>
-<span id="cb6-400"><a href="#cb6-400" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               Estimate  Std.Error</span></span>
-<span id="cb6-401"><a href="#cb6-401" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept) 34.9781898 1.52775778</span></span>
-<span id="cb6-402"><a href="#cb6-402" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; y_1          0.5326852 0.01954159</span></span>
-<span id="cb6-403"><a href="#cb6-403" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period1)  -1.0964930 0.09237691</span></span>
-<span id="cb6-404"><a href="#cb6-404" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period2)  -2.0307305 0.09180078</span></span>
-<span id="cb6-405"><a href="#cb6-405" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period3)  -0.9423100 0.08602172</span></span>
-<span id="cb6-406"><a href="#cb6-406" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x_1         -0.4100241 0.06719165</span></span>
-<span id="cb6-407"><a href="#cb6-407" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period1)  -0.9051961 0.08431607</span></span>
-<span id="cb6-408"><a href="#cb6-408" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period2)  -1.7590954 0.09989508</span></span>
-<span id="cb6-409"><a href="#cb6-409" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period3)  -0.8992131 0.09873103</span></span>
-<span id="cb6-410"><a href="#cb6-410" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-411"><a href="#cb6-411" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $`3`</span></span>
-<span id="cb6-412"><a href="#cb6-412" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               Estimate  Std.Error</span></span>
-<span id="cb6-413"><a href="#cb6-413" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept) 35.1963910 1.52606520</span></span>
-<span id="cb6-414"><a href="#cb6-414" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; y_1          0.5339083 0.01948983</span></span>
-<span id="cb6-415"><a href="#cb6-415" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period1)  -1.1131393 0.09189022</span></span>
-<span id="cb6-416"><a href="#cb6-416" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period2)  -2.0448502 0.09135054</span></span>
-<span id="cb6-417"><a href="#cb6-417" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period3)  -0.9929768 0.08598390</span></span>
-<span id="cb6-418"><a href="#cb6-418" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x_1         -0.3969935 0.06699045</span></span>
-<span id="cb6-419"><a href="#cb6-419" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period1)  -0.8916398 0.08381473</span></span>
-<span id="cb6-420"><a href="#cb6-420" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period2)  -1.7702974 0.09930860</span></span>
-<span id="cb6-421"><a href="#cb6-421" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period3)  -0.8907550 0.09830810</span></span>
-<span id="cb6-422"><a href="#cb6-422" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-423"><a href="#cb6-423" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $`4`</span></span>
-<span id="cb6-424"><a href="#cb6-424" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               Estimate  Std.Error</span></span>
-<span id="cb6-425"><a href="#cb6-425" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept) 35.1908849 1.55296904</span></span>
-<span id="cb6-426"><a href="#cb6-426" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; y_1          0.5319206 0.02003493</span></span>
-<span id="cb6-427"><a href="#cb6-427" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period1)  -1.1113682 0.09395340</span></span>
-<span id="cb6-428"><a href="#cb6-428" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period2)  -2.0481383 0.09320667</span></span>
-<span id="cb6-429"><a href="#cb6-429" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period3)  -0.9784968 0.08769360</span></span>
-<span id="cb6-430"><a href="#cb6-430" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x_1         -0.4051607 0.06862575</span></span>
-<span id="cb6-431"><a href="#cb6-431" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period1)  -0.9060797 0.08567931</span></span>
-<span id="cb6-432"><a href="#cb6-432" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period2)  -1.7627513 0.10151174</span></span>
-<span id="cb6-433"><a href="#cb6-433" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period3)  -0.9183142 0.10038647</span></span>
-<span id="cb6-434"><a href="#cb6-434" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-435"><a href="#cb6-435" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $`5`</span></span>
-<span id="cb6-436"><a href="#cb6-436" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               Estimate  Std.Error</span></span>
-<span id="cb6-437"><a href="#cb6-437" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept) 34.5799408 1.51315221</span></span>
-<span id="cb6-438"><a href="#cb6-438" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; y_1          0.5428249 0.01968663</span></span>
-<span id="cb6-439"><a href="#cb6-439" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period1)  -1.1171434 0.09225347</span></span>
-<span id="cb6-440"><a href="#cb6-440" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period2)  -2.0095130 0.09136385</span></span>
-<span id="cb6-441"><a href="#cb6-441" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period3)  -0.9688488 0.08572039</span></span>
-<span id="cb6-442"><a href="#cb6-442" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x_1         -0.3798004 0.06754602</span></span>
-<span id="cb6-443"><a href="#cb6-443" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period1)  -0.8987684 0.08409871</span></span>
-<span id="cb6-444"><a href="#cb6-444" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period2)  -1.7578108 0.09950457</span></span>
-<span id="cb6-445"><a href="#cb6-445" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period3)  -0.9118140 0.09819002</span></span>
-<span id="cb6-446"><a href="#cb6-446" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-447"><a href="#cb6-447" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; seed for multiple imputation after SSMimpute is: 1 </span></span>
-<span id="cb6-448"><a href="#cb6-448" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $`1`</span></span>
-<span id="cb6-449"><a href="#cb6-449" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               Estimate  Std.Error</span></span>
-<span id="cb6-450"><a href="#cb6-450" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept) 36.5937898 1.63301678</span></span>
-<span id="cb6-451"><a href="#cb6-451" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; y_1          0.4916423 0.01996472</span></span>
-<span id="cb6-452"><a href="#cb6-452" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period1)  -1.1371721 0.09761071</span></span>
-<span id="cb6-453"><a href="#cb6-453" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period2)  -2.1329270 0.09677856</span></span>
-<span id="cb6-454"><a href="#cb6-454" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period3)  -0.9565793 0.09122414</span></span>
-<span id="cb6-455"><a href="#cb6-455" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x_1         -0.4285867 0.07121218</span></span>
-<span id="cb6-456"><a href="#cb6-456" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period1)  -0.8534171 0.08878967</span></span>
-<span id="cb6-457"><a href="#cb6-457" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period2)  -1.7572239 0.10538904</span></span>
-<span id="cb6-458"><a href="#cb6-458" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period3)  -0.8904292 0.10452329</span></span>
-<span id="cb6-459"><a href="#cb6-459" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-460"><a href="#cb6-460" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $`2`</span></span>
-<span id="cb6-461"><a href="#cb6-461" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               Estimate  Std.Error</span></span>
-<span id="cb6-462"><a href="#cb6-462" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept) 35.7621112 1.61908241</span></span>
-<span id="cb6-463"><a href="#cb6-463" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; y_1          0.4982196 0.01993704</span></span>
-<span id="cb6-464"><a href="#cb6-464" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period1)  -1.1060656 0.09709320</span></span>
-<span id="cb6-465"><a href="#cb6-465" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period2)  -2.0763292 0.09639478</span></span>
-<span id="cb6-466"><a href="#cb6-466" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period3)  -0.8808334 0.09012644</span></span>
-<span id="cb6-467"><a href="#cb6-467" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x_1         -0.4681072 0.06996906</span></span>
-<span id="cb6-468"><a href="#cb6-468" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period1)  -0.8854504 0.08845196</span></span>
-<span id="cb6-469"><a href="#cb6-469" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period2)  -1.8038318 0.10476008</span></span>
-<span id="cb6-470"><a href="#cb6-470" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period3)  -0.8935677 0.10384232</span></span>
-<span id="cb6-471"><a href="#cb6-471" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-472"><a href="#cb6-472" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $`3`</span></span>
-<span id="cb6-473"><a href="#cb6-473" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               Estimate  Std.Error</span></span>
-<span id="cb6-474"><a href="#cb6-474" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept) 37.7630714 1.62080162</span></span>
-<span id="cb6-475"><a href="#cb6-475" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; y_1          0.4836374 0.01975057</span></span>
-<span id="cb6-476"><a href="#cb6-476" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period1)  -1.0756721 0.09714843</span></span>
-<span id="cb6-477"><a href="#cb6-477" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period2)  -2.1280758 0.09716962</span></span>
-<span id="cb6-478"><a href="#cb6-478" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period3)  -0.9085994 0.09109279</span></span>
-<span id="cb6-479"><a href="#cb6-479" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x_1         -0.5150712 0.06929647</span></span>
-<span id="cb6-480"><a href="#cb6-480" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period1)  -0.8618838 0.08887467</span></span>
-<span id="cb6-481"><a href="#cb6-481" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period2)  -1.8226255 0.10535239</span></span>
-<span id="cb6-482"><a href="#cb6-482" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period3)  -0.9287471 0.10490173</span></span>
-<span id="cb6-483"><a href="#cb6-483" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-484"><a href="#cb6-484" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $`4`</span></span>
-<span id="cb6-485"><a href="#cb6-485" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               Estimate  Std.Error</span></span>
-<span id="cb6-486"><a href="#cb6-486" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept) 37.3653425 1.63458686</span></span>
-<span id="cb6-487"><a href="#cb6-487" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; y_1          0.4939813 0.02017471</span></span>
-<span id="cb6-488"><a href="#cb6-488" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period1)  -1.1259428 0.09737272</span></span>
-<span id="cb6-489"><a href="#cb6-489" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period2)  -2.1192819 0.09725869</span></span>
-<span id="cb6-490"><a href="#cb6-490" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period3)  -1.0112597 0.09183203</span></span>
-<span id="cb6-491"><a href="#cb6-491" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x_1         -0.4367382 0.07099378</span></span>
-<span id="cb6-492"><a href="#cb6-492" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period1)  -0.9717457 0.08870270</span></span>
-<span id="cb6-493"><a href="#cb6-493" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period2)  -1.8383396 0.10516842</span></span>
-<span id="cb6-494"><a href="#cb6-494" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period3)  -0.8971200 0.10474421</span></span>
-<span id="cb6-495"><a href="#cb6-495" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-496"><a href="#cb6-496" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $`5`</span></span>
-<span id="cb6-497"><a href="#cb6-497" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               Estimate  Std.Error</span></span>
-<span id="cb6-498"><a href="#cb6-498" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept) 37.9624202 1.62099498</span></span>
-<span id="cb6-499"><a href="#cb6-499" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; y_1          0.4861918 0.02047982</span></span>
-<span id="cb6-500"><a href="#cb6-500" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period1)  -1.0957885 0.10019174</span></span>
-<span id="cb6-501"><a href="#cb6-501" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period2)  -2.1069358 0.09916043</span></span>
-<span id="cb6-502"><a href="#cb6-502" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x(period3)  -0.9790091 0.09365719</span></span>
-<span id="cb6-503"><a href="#cb6-503" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x_1         -0.5099319 0.07175402</span></span>
-<span id="cb6-504"><a href="#cb6-504" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period1)  -0.9189424 0.09122725</span></span>
-<span id="cb6-505"><a href="#cb6-505" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period2)  -1.8383015 0.10797037</span></span>
-<span id="cb6-506"><a href="#cb6-506" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; c(period3)  -0.8863738 0.10695435</span></span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-4-2.png" width="100%"></p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">imputeTS</span><span class="fu">::</span><span class="fu"><a href="https://SteffenMoritz.github.io/imputeTS/reference/ggplot_na_distribution.html" class="external-link">ggplot_na_distribution</a></span><span class="op">(</span><span class="va">data_space_SSMimpute</span><span class="op">$</span><span class="va">c</span>, color_missing <span class="op">=</span> <span class="st">"pink"</span>,color_missing_border <span class="op">=</span> <span class="st">"pink"</span>, alpha_missing <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-4-3.png" width="100%"></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">kable</span><span class="op">(</span><span class="va">result_statespace_SSMimpute1</span><span class="op">$</span><span class="va">result_convergence</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">printFlag</span><span class="op">=</span><span class="cn">T</span>
+<span class="va">formula</span><span class="op">=</span><span class="st">"y~y_1+x+x_1+c"</span>
+<span class="va">formula_var</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html" class="external-link">strsplit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html" class="external-link">strsplit</a></span><span class="op">(</span><span class="va">formula</span>,<span class="st">"~"</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,<span class="st">"+"</span>,fixed<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">ss_param</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>inits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">0.25</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>,m0<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">40</span>,<span class="fl">0.5</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">0.5</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>,C0<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">10</span><span class="op">^</span><span class="fl">3</span><span class="op">)</span>,<span class="fl">5</span><span class="op">)</span>, AR1_coeffi<span class="op">=</span><span class="cn">NULL</span>,rw_coeffi<span class="op">=</span><span class="st">"intercept"</span>, v_cp_param<span class="op">=</span><span class="cn">NULL</span>, w_cp_param<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>variable<span class="op">=</span><span class="st">"x"</span>,<span class="st">"segments"</span><span class="op">=</span><span class="fl">3</span>,<span class="st">"changepoints"</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">400</span>,<span class="fl">700</span><span class="op">)</span>,fixed_cpts<span class="op">=</span><span class="cn">F</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>variable<span class="op">=</span><span class="st">"c"</span>,<span class="st">"segments"</span><span class="op">=</span><span class="fl">3</span>,<span class="st">"changepoints"</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">400</span>,<span class="fl">700</span><span class="op">)</span>,fixed_cpts<span class="op">=</span><span class="cn">F</span><span class="op">)</span><span class="op">)</span>,max_iteration<span class="op">=</span><span class="fl">100</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data_space_SSMimpute</span><span class="op">)</span>
+
+<span class="va">result_statespace_SSMimpute1</span><span class="op">=</span><span class="fu"><a href="reference/run.SSMimpute_unanimous_cpts.html">run.SSMimpute_unanimous_cpts</a></span><span class="op">(</span>data_ss_ori<span class="op">=</span><span class="va">data_space_SSMimpute</span>,<span class="va">formula_var</span>,ss_param_temp<span class="op">=</span><span class="va">ss_param</span>,
+                                                         initial_imputation_option<span class="op">=</span><span class="st">"StructTS"</span>,
+                                                         estimate_convergence_cri<span class="op">=</span><span class="fl">0.01</span>,
+                                                         lik_convergence_cri<span class="op">=</span><span class="fl">0.01</span>,
+                                                         stepsize_for_newpart<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">3</span>,
+                                                         max_iteration<span class="op">=</span><span class="fl">100</span>,
+                                                         cpt_learning_param<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cpt_method<span class="op">=</span><span class="st">"mean"</span>,burnin<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">10</span>,mergeband<span class="op">=</span><span class="fl">20</span>,convergence_cri<span class="op">=</span><span class="fl">10</span><span class="op">)</span>,
+                                                         cpt_initial_guess_option<span class="op">=</span><span class="st">"ignore"</span>,
+                                                         dlm_option<span class="op">=</span><span class="st">"smooth"</span>,m<span class="op">=</span><span class="fl">5</span>,seed<span class="op">=</span><span class="fl">1</span>,printFlag<span class="op">=</span><span class="cn">F</span><span class="op">)</span>
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
+
+<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
+<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
+<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#kable(result_statespace_SSMimpute1$result_convergence)</span>
+<span class="co">#kable(result_statespace_SSMimpute1$result_convergence_mp)</span>
+<span class="fu">kable</span><span class="op">(</span><span class="va">result_statespace_SSMimpute1</span><span class="op">$</span><span class="va">result_convergence_mp_addV</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left"></th>
@@ -737,51 +443,54 @@
 <tbody>
 <tr class="odd">
 <td align="left">(Intercept)</td>
-<td align="right">34.8592438</td>
-<td align="right">1.5234230</td>
+<td align="right">37.0893470</td>
+<td align="right">2.5694929</td>
 </tr>
 <tr class="even">
 <td align="left">y_1</td>
-<td align="right">0.5404788</td>
-<td align="right">0.0196571</td>
+<td align="right">0.4907345</td>
+<td align="right">0.0238453</td>
 </tr>
 <tr class="odd">
 <td align="left">x(period1)</td>
-<td align="right">-1.1138136</td>
-<td align="right">0.0918573</td>
+<td align="right">-1.1081282</td>
+<td align="right">0.1114787</td>
 </tr>
 <tr class="even">
 <td align="left">x(period2)</td>
-<td align="right">-2.0301153</td>
-<td align="right">0.0912504</td>
+<td align="right">-2.1127099</td>
+<td align="right">0.1092351</td>
 </tr>
 <tr class="odd">
 <td align="left">x(period3)</td>
-<td align="right">-0.9774981</td>
-<td align="right">0.0857460</td>
+<td align="right">-0.9472562</td>
+<td align="right">0.1473329</td>
 </tr>
 <tr class="even">
 <td align="left">x_1</td>
-<td align="right">-0.3854950</td>
-<td align="right">0.0671971</td>
+<td align="right">-0.4716870</td>
+<td align="right">0.1127635</td>
 </tr>
 <tr class="odd">
 <td align="left">c(period1)</td>
-<td align="right">-0.8970342</td>
-<td align="right">0.0837952</td>
+<td align="right">-0.8982879</td>
+<td align="right">0.1383859</td>
 </tr>
 <tr class="even">
 <td align="left">c(period2)</td>
-<td align="right">-1.7643507</td>
-<td align="right">0.0992439</td>
+<td align="right">-1.8120645</td>
+<td align="right">0.1290675</td>
 </tr>
 <tr class="odd">
 <td align="left">c(period3)</td>
-<td align="right">-0.9125405</td>
-<td align="right">0.0982015</td>
+<td align="right">-0.8992476</td>
+<td align="right">0.1113789</td>
 </tr>
 </tbody>
 </table>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">result_statespace_SSMimpute1</span><span class="op">$</span><span class="va">estimated_cpts</span>
+<span class="co">#&gt; [1] 399 700</span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
@@ -811,6 +520,7 @@
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Junzhe Shao <br><small class="roles"> Maintainer </small>  </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 

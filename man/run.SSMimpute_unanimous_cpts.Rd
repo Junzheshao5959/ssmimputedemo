@@ -50,12 +50,13 @@ run.SSMimpute_unanimous_cpts(
 \item{seed}{random seed}
 
 \item{printFlag}{whether we need to print the Flag plots.}
-
-\item{m0}{initial values for states <C0>: initial values for variance of states <inits>: initial values for the estimating of all NA terms, via maximizing likelihood}
 }
 \value{
 A list
 }
 \description{
 SSMimpute: state space model direct imputation on missing data in covariates
+}
+\details{
+<m0> initial values for states <C0>: initial values for variance of states <inits>: initial values for the estimating of all NA terms, via maximizing likelihood
 }

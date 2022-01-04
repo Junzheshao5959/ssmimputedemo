@@ -5,7 +5,6 @@
 #'
 #' @return
 #' @export
-#' @examples
 merge_closepoints=function(points,band){
   points=unique(sort(points))
   to_be_merged=which(as.numeric(diff(points)<band)==1)

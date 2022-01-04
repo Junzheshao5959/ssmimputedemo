@@ -3,7 +3,7 @@
 #' @param data_ss_ori contains all information, and only selected variables in formula_var enters the statespace model
 #' @param formula_var select variables from <data_ss_ori> into the state space model
 #' @param ss_param_temp A list of parameters, details below
-#' @param m0  initial values for states <C0>: initial values for variance of states <inits>: initial values for the estimating of all NA terms, via maximizing likelihood
+#' @details   <m0> initial values for states <C0>: initial values for variance of states <inits>: initial values for the estimating of all NA terms, via maximizing likelihood
 #             <AR1_coeffi>: variables, whose coefficient is a AR(1) process;
 #                           if none, then is NULL
 #             <rw_coeffi>: variables, whose coefficient is a random walk process;

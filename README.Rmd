@@ -31,7 +31,7 @@ The goal of ssmimputedemo is a testing package for the development of SSMimpute 
 
 You can install the development version of ssmimputedemo like so:
 
-``` {r}
+``` {r eval = FALSE}
 library(devtools)
 devtools::install_github("Junzheshao5959/ssmimputedemo")
 ```
@@ -40,23 +40,32 @@ devtools::install_github("Junzheshao5959/ssmimputedemo")
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example}
+```{r message=FALSE}
 library(ssmimputedemo)
 ## basic example code
-ssmimputedemo::hello("world")
+ssmimputedemo::hello("Apple")
 ```
 
-Check the functions and dataset here:
+Here is a very basic example when possible change points are same across variables. We considered the following model.  
+$$
+Y_{t}=\beta_{0, t}+0.5 Y_{t-1}+\beta_{1, t} X_{t}-0.5 X_{t-1}-\beta_{c, t}C_{t}+v_{t}, \quad v_{t} \sim N(0,1)
+$$
+  
+where $\beta_{0, t}$ follows a random walk as $\beta_{0, t}=40+\beta_{0, t-1}+w_{t}$ and $w_{t} \sim N(0,0.25)$, and $\beta_{c, t}=-1$ for $t=1, \ldots, 400, \beta_{c, t}=-2$ for $t=401, \ldots, 700$, and $\beta_{c, t}=0$ for $t=701, \ldots, 1000$.  
+
+Here are plots for the sample data set `data_space_SSMimpute`
+![](https://cdn.mathpix.com/snip/images/Qep9kS6HXGDXOtN5OzqeNIEJdAwtmSbMO3y7vjmUXiQ.original.fullsize.png)
 ```{r}
 ?data_space_SSMimpute
 ?run.SSMimpute_unanimous_cpts
 kable(head(data_space_SSMimpute))
 imputeTS::ggplot_na_distribution(data_space_SSMimpute$y, color_missing = "pink",color_missing_border = "pink", alpha_missing = 0.9)
 imputeTS::ggplot_na_distribution(data_space_SSMimpute$x, color_missing = "pink",color_missing_border = "pink", alpha_missing = 0.9)
+imputeTS::ggplot_na_distribution(data_space_SSMimpute$c, color_missing = "pink",color_missing_border = "pink", alpha_missing = 0.9)
 ```
 
-Here is a very basic example when possible change points are same across variables
-```{r echo=FALSE}
+
+```{r message = FALSE, results ='hide', warnings = FALSE}
 printFlag=T
 formula="y~y_1+x+x_1+c"
 formula_var=unlist(strsplit(unlist(strsplit(formula,"~"))[2],"+",fixed=T))
@@ -79,6 +88,9 @@ result_statespace_SSMimpute1=run.SSMimpute_unanimous_cpts(data_ss_ori=data_space
 
 ```
 ```{r}
-kable(result_statespace_SSMimpute1$result_convergence)
+#kable(result_statespace_SSMimpute1$result_convergence)
+#kable(result_statespace_SSMimpute1$result_convergence_mp)
+kable(result_statespace_SSMimpute1$result_convergence_mp_addV)
+result_statespace_SSMimpute1$estimated_cpts
 ```
 

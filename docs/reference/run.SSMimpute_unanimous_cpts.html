@@ -24,7 +24,7 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/SSM_vignette.html">Exmaple1</a>
+    <a class="dropdown-item" href="../articles/SSM_vignette.html">SSM_vignette</a>
   </div>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
@@ -78,9 +78,9 @@
     <dl><dt>data_ss_ori</dt>
 <dd><p>contains all information, and only selected variables in formula_var enters the statespace model</p></dd>
 <dt>formula_var</dt>
-<dd><p>select variables from &lt;data_ss_ori&gt; into the statespace model</p></dd>
+<dd><p>select variables from &lt;data_ss_ori&gt; into the state space model</p></dd>
 <dt>ss_param_temp</dt>
-<dd><p>&lt;m0&gt;: initial values for states</p></dd>
+<dd><p>A list of parameters, details below</p></dd>
 <dt>initial_imputation_option</dt>
 <dd><p>for the first iteration of imputing missing y, choose StructTS or others, and can't be "ignore"</p></dd>
 <dt>estimate_convergence_cri</dt>
@@ -107,6 +107,10 @@
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A list</p>
+    </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>&lt;m0&gt; initial values for states &lt;C0&gt;: initial values for variance of states &lt;inits&gt;: initial values for the estimating of all NA terms, via maximizing likelihood</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
