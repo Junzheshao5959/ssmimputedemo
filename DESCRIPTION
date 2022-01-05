@@ -2,7 +2,7 @@ Package: ssmimputedemo
 Type: Package
 Title: SSM Imputation DEMO(Title Case)
 Version: 0.1.0
-Author: Xiaoxuan Cai, Xinru Wang, Linda Valeri
+Authors@R: c(person("Xiaoxuan","Cai", role = "aut", email = "xc2577@columbia.edu"), person("Xinru", "Wang", role = "aut", email = "xxxx@columbia.edu"),person("Junzhe", "Shao", role = "cre", email = "js5959@columbia.edu"),person("Linda", "Valeri", role = "aut", email = "lv2424@cumc.columbia.edu"))
 Maintainer: Junzhe Shao, <js5959@columbia.edu>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
