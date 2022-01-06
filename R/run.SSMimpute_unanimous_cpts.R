@@ -4,7 +4,7 @@
 #' @param formula_var select variables from <data_ss_ori> into the state space model
 #' @param ss_param_temp A list of parameters, details below
 #' @details   <m0> initial values for states <C0>: initial values for variance of states <inits>: initial values for the estimating of all NA terms, via maximizing likelihood
-#             <AR1_coeffi>: variables, whose coefficient is a AR(1) process;
+#             \n <AR1_coeffi>: variables, whose coefficient is a AR(1) process;
 #                           if none, then is NULL
 #             <rw_coeffi>: variables, whose coefficient is a random walk process;
 #                          if none, then is NULL
@@ -973,5 +973,5 @@ run.SSMimpute_unanimous_cpts=function(data_ss_ori,formula_var,ss_param_temp,
               estimated_cpts=estimated_cpts,
               out_filter=out_filter,
               iter=iter,
-              data_temp = data_temp))
+              data_temp = data_temp, y_final = init_y_final))
 }
