@@ -65,22 +65,16 @@ kable(head(data_space_SSMimpute))
 |   7 | 2019-02-18 |       NA | 10.075845 | 7.783034 | 39.27642 | 10.543667 | 8.265307 |
 
 ``` r
-imputeTS::ggplot_na_distribution(data_space_SSMimpute$y, color_missing = "pink",color_missing_border = "pink", alpha_missing = 0.9)
+imputeTS::ggplot_na_distribution(data_space_SSMimpute$x, color_missing = "pink",color_missing_border = "pink", alpha_missing = 0.9)
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
 ``` r
-imputeTS::ggplot_na_distribution(data_space_SSMimpute$x, color_missing = "pink",color_missing_border = "pink", alpha_missing = 0.9)
-```
-
-<img src="man/figures/README-unnamed-chunk-4-2.png" width="100%" />
-
-``` r
 imputeTS::ggplot_na_distribution(data_space_SSMimpute$c, color_missing = "pink",color_missing_border = "pink", alpha_missing = 0.9)
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-3.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-2.png" width="100%" />
 
 ``` r
 printFlag=T
@@ -355,3 +349,22 @@ kable(result_statespace_SSMimpute1$result_convergence_mp_addV)
 result_statespace_SSMimpute1$estimated_cpts
 #> [1] 399 700
 ```
+
+``` r
+data_na = result_statespace_SSMimpute1$data_temp
+length(data_na$y_1)
+#> [1] 999
+
+data_temp = result_statespace_SSMimpute1$data_temp
+missing_part=which(is.na(data_temp$y))[which(is.na(data_temp$y))<nrow(data_temp)]
+data_temp$y_1[missing_part+1]=result_statespace_SSMimpute1$y_final
+imputeTS::ggplot_na_distribution(data_space_SSMimpute$y_1, color_missing = "pink",color_missing_border = "pink", alpha_missing = 0.9)
+```
+
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
+
+``` r
+imputeTS::ggplot_na_imputations(x_with_na =  data_space_SSMimpute$y_1, x_with_imputations = data_na$y_1)
+```
+
+<img src="man/figures/README-unnamed-chunk-7-2.png" width="100%" />

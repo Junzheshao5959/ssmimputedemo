@@ -59,7 +59,7 @@ Here are plots for the sample data set `data_space_SSMimpute`
 ?data_space_SSMimpute
 ?run.SSMimpute_unanimous_cpts
 kable(head(data_space_SSMimpute))
-imputeTS::ggplot_na_distribution(data_space_SSMimpute$y, color_missing = "pink",color_missing_border = "pink", alpha_missing = 0.9)
+
 imputeTS::ggplot_na_distribution(data_space_SSMimpute$x, color_missing = "pink",color_missing_border = "pink", alpha_missing = 0.9)
 imputeTS::ggplot_na_distribution(data_space_SSMimpute$c, color_missing = "pink",color_missing_border = "pink", alpha_missing = 0.9)
 ```
@@ -92,5 +92,19 @@ result_statespace_SSMimpute1=run.SSMimpute_unanimous_cpts(data_ss_ori=data_space
 #kable(result_statespace_SSMimpute1$result_convergence_mp)
 kable(result_statespace_SSMimpute1$result_convergence_mp_addV)
 result_statespace_SSMimpute1$estimated_cpts
+
+
+
 ```
+```{r}
+data_na = result_statespace_SSMimpute1$data_temp
+length(data_na$y_1)
+
+data_temp = result_statespace_SSMimpute1$data_temp
+missing_part=which(is.na(data_temp$y))[which(is.na(data_temp$y))<nrow(data_temp)]
+data_temp$y_1[missing_part+1]=result_statespace_SSMimpute1$y_final
+imputeTS::ggplot_na_distribution(data_space_SSMimpute$y_1, color_missing = "pink",color_missing_border = "pink", alpha_missing = 0.9)
+imputeTS::ggplot_na_imputations(x_with_na =  data_space_SSMimpute$y_1, x_with_imputations = data_na$y_1)
+```
+
 
