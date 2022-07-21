@@ -17,7 +17,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
@@ -25,6 +25,8 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/SSM_vignette.html">SSM_vignette</a>
+    <a class="dropdown-item" href="../articles/kfas_exploration.html">data exploration via KFAS</a>
+    <a class="dropdown-item" href="../articles/sample_data.html">Sample data</a>
   </div>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
@@ -54,59 +56,88 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">run.SSMimpute_unanimous_cpts</span><span class="op">(</span>
-  <span class="va">data_ss_ori</span>,
-  <span class="va">formula_var</span>,
-  <span class="va">ss_param_temp</span>,
-  initial_imputation_option <span class="op">=</span> <span class="st">"StructTS"</span>,
-  estimate_convergence_cri <span class="op">=</span> <span class="fl">0.01</span>,
-  lik_convergence_cri <span class="op">=</span> <span class="fl">0.01</span>,
-  stepsize_for_newpart <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">3</span>,
-  max_iteration <span class="op">=</span> <span class="fl">100</span>,
-  cpt_learning_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cpt_method <span class="op">=</span> <span class="st">"mean"</span>, burnin <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">10</span>, mergeband <span class="op">=</span> <span class="fl">20</span>,
-    convergence_cri <span class="op">=</span> <span class="fl">15</span><span class="op">)</span>,
-  cpt_initial_guess_option <span class="op">=</span> <span class="st">"ignore"</span>,
-  dlm_option <span class="op">=</span> <span class="st">"smooth"</span>,
-  m <span class="op">=</span> <span class="fl">5</span>,
-  seed <span class="op">=</span> <span class="fl">1</span>,
-  printFlag <span class="op">=</span> <span class="cn">T</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">run.SSMimpute_unanimous_cpts</span><span class="op">(</span></span>
+<span>  <span class="va">data_ss_ori</span>,</span>
+<span>  <span class="va">formula_var</span>,</span>
+<span>  <span class="va">ss_param_temp</span>,</span>
+<span>  initial_imputation_option <span class="op">=</span> <span class="st">"StructTS"</span>,</span>
+<span>  estimate_convergence_cri <span class="op">=</span> <span class="fl">0.01</span>,</span>
+<span>  lik_convergence_cri <span class="op">=</span> <span class="fl">0.01</span>,</span>
+<span>  stepsize_for_newpart <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">3</span>,</span>
+<span>  max_iteration <span class="op">=</span> <span class="fl">100</span>,</span>
+<span>  cpt_learning_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cpt_method <span class="op">=</span> <span class="st">"mean"</span>, burnin <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">10</span>, mergeband <span class="op">=</span> <span class="fl">20</span>,</span>
+<span>    convergence_cri <span class="op">=</span> <span class="fl">15</span><span class="op">)</span>,</span>
+<span>  cpt_initial_guess_option <span class="op">=</span> <span class="st">"ignore"</span>,</span>
+<span>  dlm_option <span class="op">=</span> <span class="st">"smooth"</span>,</span>
+<span>  m <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  seed <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  printFlag <span class="op">=</span> <span class="cn">T</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>data_ss_ori</dt>
 <dd><p>contains all information, and only selected variables in formula_var enters the statespace model</p></dd>
+
+
 <dt>formula_var</dt>
 <dd><p>select variables from &lt;data_ss_ori&gt; into the state space model</p></dd>
+
+
 <dt>ss_param_temp</dt>
 <dd><p>A list of parameters, details below</p></dd>
+
+
 <dt>initial_imputation_option</dt>
 <dd><p>for the first iteration of imputing missing y, choose StructTS or others, and can't be "ignore"</p></dd>
+
+
 <dt>estimate_convergence_cri</dt>
 <dd><p>critic value for convergence check, default 0.01</p></dd>
+
+
 <dt>lik_convergence_cri</dt>
 <dd><p>critic value for convergence check, default 0.01</p></dd>
+
+
 <dt>stepsize_for_newpart</dt>
 <dd><p>stepsize specified, default 1/3</p></dd>
+
+
 <dt>max_iteration</dt>
 <dd><p>max iteration, default 100</p></dd>
+
+
 <dt>cpt_learning_param</dt>
 <dd><p>&lt;cpt_method&gt; either "mean" or "meanvar"</p></dd>
+
+
 <dt>cpt_initial_guess_option</dt>
 <dd><p>option for initially learning cpts in preparation period</p></dd>
+
+
 <dt>dlm_option</dt>
 <dd><p>choose between smooth or filter</p></dd>
+
+
 <dt>m</dt>
 <dd><p>number of draws for multiple imputation</p></dd>
+
+
 <dt>seed</dt>
 <dd><p>random seed</p></dd>
+
+
 <dt>printFlag</dt>
 <dd><p>whether we need to print the Flag plots.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A list</p>
+    
+
+<p>A list</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -122,7 +153,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer></div>

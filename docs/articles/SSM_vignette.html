@@ -33,7 +33,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
@@ -42,6 +42,8 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/SSM_vignette.html">SSM_vignette</a>
+    <a class="dropdown-item" href="../articles/kfas_exploration.html">data exploration via KFAS</a>
+    <a class="dropdown-item" href="../articles/sample_data.html">Sample data</a>
   </div>
 </li>
       </ul>
@@ -63,8 +65,11 @@
   </div>
 </nav><div class="container template-article">
 
+
+
+
 <div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>SSM_vignette</h1>
             
       
@@ -75,53 +80,73 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Junzheshao5959/ssmimputedemo" class="external-link">ssmimputedemo</a></span><span class="op">)</span>
-<span class="co">#&gt; Loading required package: tibble</span>
-<span class="co">#&gt; Loading required package: changepoint</span>
-<span class="co">#&gt; Loading required package: zoo</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'zoo'</span>
-<span class="co">#&gt; The following objects are masked from 'package:base':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     as.Date, as.Date.numeric</span>
-<span class="co">#&gt; Successfully loaded changepoint package version 2.2.2</span>
-<span class="co">#&gt;  NOTE: Predefined penalty values changed in version 2.2.  Previous penalty values with a postfix 1 i.e. SIC1 are now without i.e. SIC and previous penalties without a postfix i.e. SIC are now with a postfix 0 i.e. SIC0. See NEWS and help files for further details.</span>
-<span class="co">#&gt; Loading required package: dlm</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'dlm'</span>
-<span class="co">#&gt; The following object is masked from 'package:crayon':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     %+%</span>
-<span class="co">#&gt; Loading required package: tidyverse</span>
-<span class="co">#&gt; ── <span style="font-weight: bold;">Attaching packages</span> ─────────────────────────────────────── tidyverse 1.3.1 ──</span>
-<span class="co">#&gt; <span style="color: #00BB00;">✓</span> <span style="color: #0000BB;">ggplot2</span> 3.3.5     <span style="color: #00BB00;">✓</span> <span style="color: #0000BB;">dplyr  </span> 1.0.7</span>
-<span class="co">#&gt; <span style="color: #00BB00;">✓</span> <span style="color: #0000BB;">tidyr  </span> 1.1.4     <span style="color: #00BB00;">✓</span> <span style="color: #0000BB;">stringr</span> 1.4.0</span>
-<span class="co">#&gt; <span style="color: #00BB00;">✓</span> <span style="color: #0000BB;">readr  </span> 2.1.1     <span style="color: #00BB00;">✓</span> <span style="color: #0000BB;">forcats</span> 0.5.1</span>
-<span class="co">#&gt; <span style="color: #00BB00;">✓</span> <span style="color: #0000BB;">purrr  </span> 0.3.4</span>
-<span class="co">#&gt; ── <span style="font-weight: bold;">Conflicts</span> ────────────────────────────────────────── tidyverse_conflicts() ──</span>
-<span class="co">#&gt; <span style="color: #BB0000;">x</span> <span style="color: #0000BB;">ggplot2</span>::<span style="color: #00BB00;">%+%()</span>  masks <span style="color: #0000BB;">dlm</span>::%+%(), <span style="color: #0000BB;">crayon</span>::%+%()</span>
-<span class="co">#&gt; <span style="color: #BB0000;">x</span> <span style="color: #0000BB;">dplyr</span>::<span style="color: #00BB00;">filter()</span> masks <span style="color: #0000BB;">stats</span>::filter()</span>
-<span class="co">#&gt; <span style="color: #BB0000;">x</span> <span style="color: #0000BB;">dplyr</span>::<span style="color: #00BB00;">lag()</span>    masks <span style="color: #0000BB;">stats</span>::lag()</span>
-<span class="co">#&gt; <span style="color: #BB0000;">x</span> <span style="color: #0000BB;">dplyr</span>::<span style="color: #00BB00;">select()</span> masks <span style="color: #0000BB;">MASS</span>::select()</span>
-<span class="co">#&gt; Loading required package: imputeTS</span>
-<span class="co">#&gt; Registered S3 method overwritten by 'quantmod':</span>
-<span class="co">#&gt;   method            from</span>
-<span class="co">#&gt;   as.zoo.data.frame zoo</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'imputeTS'</span>
-<span class="co">#&gt; The following object is masked from 'package:zoo':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     na.locf</span></code></pre></div>
-<p>Here is a very basic example when possible change points are same across variables. We considered the following model.<br><span class="math display">\[
-Y_{t}=\beta_{0, t}+0.5 Y_{t-1}+\beta_{1, t} X_{t}-0.5 X_{t-1}-\beta_{c, t}C_{t}+v_{t}, \quad v_{t} \sim N(0,1)
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Junzheshao5959/ssmimputedemo" class="external-link">ssmimputedemo</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading required package: tibble</span></span>
+<span><span class="co">#&gt; Loading required package: changepoint</span></span>
+<span><span class="co">#&gt; Loading required package: zoo</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'zoo'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     as.Date, as.Date.numeric</span></span>
+<span><span class="co">#&gt; Successfully loaded changepoint package version 2.2.3</span></span>
+<span><span class="co">#&gt;  See NEWS for details of changes.</span></span>
+<span><span class="co">#&gt; Loading required package: dlm</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'dlm'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:crayon':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     %+%</span></span>
+<span><span class="co">#&gt; Loading required package: tidyverse</span></span>
+<span><span class="co">#&gt; ── <span style="font-weight: bold;">Attaching packages</span> ─────────────────────────────────────── tidyverse 1.3.1 ──</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">ggplot2</span> 3.3.6     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">dplyr  </span> 1.0.9</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">tidyr  </span> 1.2.0     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">stringr</span> 1.4.0</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">readr  </span> 2.1.2     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">forcats</span> 0.5.1</span></span>
+<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">purrr  </span> 0.3.4</span></span>
+<span><span class="co">#&gt; ── <span style="font-weight: bold;">Conflicts</span> ────────────────────────────────────────── tidyverse_conflicts() ──</span></span>
+<span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">ggplot2</span>::<span style="color: #00BB00;">%+%()</span>  masks <span style="color: #0000BB;">dlm</span>::%+%(), <span style="color: #0000BB;">crayon</span>::%+%()</span></span>
+<span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">dplyr</span>::<span style="color: #00BB00;">filter()</span> masks <span style="color: #0000BB;">stats</span>::filter()</span></span>
+<span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">dplyr</span>::<span style="color: #00BB00;">lag()</span>    masks <span style="color: #0000BB;">stats</span>::lag()</span></span>
+<span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">dplyr</span>::<span style="color: #00BB00;">select()</span> masks <span style="color: #0000BB;">MASS</span>::select()</span></span>
+<span><span class="co">#&gt; Loading required package: imputeTS</span></span>
+<span><span class="co">#&gt; Registered S3 method overwritten by 'quantmod':</span></span>
+<span><span class="co">#&gt;   method            from</span></span>
+<span><span class="co">#&gt;   as.zoo.data.frame zoo</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'imputeTS'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:zoo':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     na.locf</span></span></code></pre></div>
+<p>Here is a very basic example when possible change points are same
+across variables. We considered the following model.<br><span class="math display">\[
+Y_{t}=\beta_{0, t}+0.5 Y_{t-1}+\beta_{1, t} X_{t}-0.5 X_{t-1}-\beta_{c,
+t}C_{t}+v_{t}, \quad v_{t} \sim N(0,1)
 \]</span></p>
-<p>where <span class="math inline">\(\beta_{0, t}\)</span> follows a random walk as <span class="math inline">\(\beta_{0, t}=40+\beta_{0, t-1}+w_{t}\)</span> and <span class="math inline">\(w_{t} \sim N(0,0.25)\)</span>, and <span class="math inline">\(\beta_{c, t}=-1\)</span> for <span class="math inline">\(t=1, \ldots, 400, \beta_{c, t}=-2\)</span> for <span class="math inline">\(t=401, \ldots, 700\)</span>, and <span class="math inline">\(\beta_{c, t}=0\)</span> for <span class="math inline">\(t=701, \ldots, 1000\)</span>.</p>
-<p>Here are plots for the sample data set <code>data_space_SSMimpute</code> <img src="https://cdn.mathpix.com/snip/images/Qep9kS6HXGDXOtN5OzqeNIEJdAwtmSbMO3y7vjmUXiQ.original.fullsize.png"></p>
+<p>where <span class="math inline">\(\beta_{0, t}\)</span> follows a
+random walk as <span class="math inline">\(\beta_{0, t}=40+\beta_{0,
+t-1}+w_{t}\)</span> and <span class="math inline">\(w_{t} \sim
+N(0,0.25)\)</span>, and <span class="math inline">\(\beta_{c,
+t}=-1\)</span> for <span class="math inline">\(t=1, \ldots, 400,
+\beta_{c, t}=-2\)</span> for <span class="math inline">\(t=401, \ldots,
+700\)</span>, and <span class="math inline">\(\beta_{c, t}=0\)</span>
+for <span class="math inline">\(t=701, \ldots, 1000\)</span>.</p>
+<p>Here are plots for the sample data set
+<code>data_space_SSMimpute</code> <img src="https://cdn.mathpix.com/snip/images/Qep9kS6HXGDXOtN5OzqeNIEJdAwtmSbMO3y7vjmUXiQ.original.fullsize.png"></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">?</span><span class="va">data_space_SSMimpute</span>
-<span class="op">?</span><span class="va">run.SSMimpute_unanimous_cpts</span>
-<span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data_space_SSMimpute</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">?</span><span class="va">data_space_SSMimpute</span></span>
+<span><span class="op">?</span><span class="va">run.SSMimpute_unanimous_cpts</span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data_space_SSMimpute</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
+<colgroup>
+<col width="4%">
+<col width="15%">
+<col width="12%">
+<col width="14%">
+<col width="12%">
+<col width="12%">
+<col width="14%">
+<col width="12%">
+</colgroup>
 <thead><tr class="header">
 <th align="right">X</th>
 <th align="left">Date</th>
@@ -196,267 +221,267 @@ Y_{t}=\beta_{0, t}+0.5 Y_{t-1}+\beta_{1, t} X_{t}-0.5 X_{t-1}-\beta_{c, t}C_{t}+
 </tbody>
 </table>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">imputeTS</span><span class="fu">::</span><span class="fu"><a href="https://SteffenMoritz.github.io/imputeTS/reference/ggplot_na_distribution.html" class="external-link">ggplot_na_distribution</a></span><span class="op">(</span><span class="va">data_space_SSMimpute</span><span class="op">$</span><span class="va">y</span>, color_missing <span class="op">=</span> <span class="st">"pink"</span>,color_missing_border <span class="op">=</span> <span class="st">"pink"</span>, alpha_missing <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">imputeTS</span><span class="fu">::</span><span class="fu"><a href="https://SteffenMoritz.github.io/imputeTS/reference/ggplot_na_distribution.html" class="external-link">ggplot_na_distribution</a></span><span class="op">(</span><span class="va">data_space_SSMimpute</span><span class="op">$</span><span class="va">y</span>, color_missing <span class="op">=</span> <span class="st">"pink"</span>,color_missing_border <span class="op">=</span> <span class="st">"pink"</span>, alpha_missing <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></code></pre></div>
 <p><img src="SSM_vignette_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">imputeTS</span><span class="fu">::</span><span class="fu"><a href="https://SteffenMoritz.github.io/imputeTS/reference/ggplot_na_distribution.html" class="external-link">ggplot_na_distribution</a></span><span class="op">(</span><span class="va">data_space_SSMimpute</span><span class="op">$</span><span class="va">x</span>, color_missing <span class="op">=</span> <span class="st">"pink"</span>,color_missing_border <span class="op">=</span> <span class="st">"pink"</span>, alpha_missing <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">imputeTS</span><span class="fu">::</span><span class="fu"><a href="https://SteffenMoritz.github.io/imputeTS/reference/ggplot_na_distribution.html" class="external-link">ggplot_na_distribution</a></span><span class="op">(</span><span class="va">data_space_SSMimpute</span><span class="op">$</span><span class="va">x</span>, color_missing <span class="op">=</span> <span class="st">"pink"</span>,color_missing_border <span class="op">=</span> <span class="st">"pink"</span>, alpha_missing <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></code></pre></div>
 <p><img src="SSM_vignette_files/figure-html/unnamed-chunk-2-2.png" width="700"></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">imputeTS</span><span class="fu">::</span><span class="fu"><a href="https://SteffenMoritz.github.io/imputeTS/reference/ggplot_na_distribution.html" class="external-link">ggplot_na_distribution</a></span><span class="op">(</span><span class="va">data_space_SSMimpute</span><span class="op">$</span><span class="va">c</span>, color_missing <span class="op">=</span> <span class="st">"pink"</span>,color_missing_border <span class="op">=</span> <span class="st">"pink"</span>, alpha_missing <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">imputeTS</span><span class="fu">::</span><span class="fu"><a href="https://SteffenMoritz.github.io/imputeTS/reference/ggplot_na_distribution.html" class="external-link">ggplot_na_distribution</a></span><span class="op">(</span><span class="va">data_space_SSMimpute</span><span class="op">$</span><span class="va">c</span>, color_missing <span class="op">=</span> <span class="st">"pink"</span>,color_missing_border <span class="op">=</span> <span class="st">"pink"</span>, alpha_missing <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></code></pre></div>
 <p><img src="SSM_vignette_files/figure-html/unnamed-chunk-2-3.png" width="700"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">printFlag</span><span class="op">=</span><span class="cn">T</span>
-<span class="va">formula</span><span class="op">=</span><span class="st">"y~y_1+x+x_1+c"</span>
-<span class="va">formula_var</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html" class="external-link">strsplit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html" class="external-link">strsplit</a></span><span class="op">(</span><span class="va">formula</span>,<span class="st">"~"</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,<span class="st">"+"</span>,fixed<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span>
-
-<span class="va">ss_param</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>inits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">0.25</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>,m0<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">40</span>,<span class="fl">0.5</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">0.5</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>,C0<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">10</span><span class="op">^</span><span class="fl">3</span><span class="op">)</span>,<span class="fl">5</span><span class="op">)</span>, AR1_coeffi<span class="op">=</span><span class="cn">NULL</span>,rw_coeffi<span class="op">=</span><span class="st">"intercept"</span>, v_cp_param<span class="op">=</span><span class="cn">NULL</span>, w_cp_param<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>variable<span class="op">=</span><span class="st">"x"</span>,<span class="st">"segments"</span><span class="op">=</span><span class="fl">3</span>,<span class="st">"changepoints"</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">400</span>,<span class="fl">700</span><span class="op">)</span>,fixed_cpts<span class="op">=</span><span class="cn">F</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>variable<span class="op">=</span><span class="st">"c"</span>,<span class="st">"segments"</span><span class="op">=</span><span class="fl">3</span>,<span class="st">"changepoints"</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">400</span>,<span class="fl">700</span><span class="op">)</span>,fixed_cpts<span class="op">=</span><span class="cn">F</span><span class="op">)</span><span class="op">)</span>,max_iteration<span class="op">=</span><span class="fl">100</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data_space_SSMimpute</span><span class="op">)</span>
-
-<span class="va">result_statespace_SSMimpute1</span><span class="op">=</span><span class="fu"><a href="../reference/run.SSMimpute_unanimous_cpts.html">run.SSMimpute_unanimous_cpts</a></span><span class="op">(</span>data_ss_ori<span class="op">=</span><span class="va">data_space_SSMimpute</span>,<span class="va">formula_var</span>,ss_param_temp<span class="op">=</span><span class="va">ss_param</span>,
-                                                         initial_imputation_option<span class="op">=</span><span class="st">"StructTS"</span>,
-                                                         estimate_convergence_cri<span class="op">=</span><span class="fl">0.01</span>,
-                                                         lik_convergence_cri<span class="op">=</span><span class="fl">0.01</span>,
-                                                         stepsize_for_newpart<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">3</span>,
-                                                         max_iteration<span class="op">=</span><span class="fl">100</span>,
-                                                         cpt_learning_param<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cpt_method<span class="op">=</span><span class="st">"mean"</span>,burnin<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">10</span>,mergeband<span class="op">=</span><span class="fl">20</span>,convergence_cri<span class="op">=</span><span class="fl">10</span><span class="op">)</span>,
-                                                         cpt_initial_guess_option<span class="op">=</span><span class="st">"ignore"</span>,
-                                                         dlm_option<span class="op">=</span><span class="st">"smooth"</span>,m<span class="op">=</span><span class="fl">5</span>,seed<span class="op">=</span><span class="fl">1</span>,printFlag<span class="op">=</span><span class="cn">F</span><span class="op">)</span>
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span>
-
-<span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span>
-<span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span>
-<span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">printFlag</span><span class="op">=</span><span class="cn">T</span></span>
+<span><span class="va">formula</span><span class="op">=</span><span class="st">"y~y_1+x+x_1+c"</span></span>
+<span><span class="va">formula_var</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html" class="external-link">strsplit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html" class="external-link">strsplit</a></span><span class="op">(</span><span class="va">formula</span>,<span class="st">"~"</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,<span class="st">"+"</span>,fixed<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ss_param</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>inits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">0.25</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>,m0<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">40</span>,<span class="fl">0.5</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">0.5</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>,C0<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">10</span><span class="op">^</span><span class="fl">3</span><span class="op">)</span>,<span class="fl">5</span><span class="op">)</span>, AR1_coeffi<span class="op">=</span><span class="cn">NULL</span>,rw_coeffi<span class="op">=</span><span class="st">"intercept"</span>, v_cp_param<span class="op">=</span><span class="cn">NULL</span>, w_cp_param<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>variable<span class="op">=</span><span class="st">"x"</span>,<span class="st">"segments"</span><span class="op">=</span><span class="fl">3</span>,<span class="st">"changepoints"</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">400</span>,<span class="fl">700</span><span class="op">)</span>,fixed_cpts<span class="op">=</span><span class="cn">F</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>variable<span class="op">=</span><span class="st">"c"</span>,<span class="st">"segments"</span><span class="op">=</span><span class="fl">3</span>,<span class="st">"changepoints"</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">400</span>,<span class="fl">700</span><span class="op">)</span>,fixed_cpts<span class="op">=</span><span class="cn">F</span><span class="op">)</span><span class="op">)</span>,max_iteration<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data_space_SSMimpute</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">result_statespace_SSMimpute1</span><span class="op">=</span><span class="fu"><a href="../reference/run.SSMimpute_unanimous_cpts.html">run.SSMimpute_unanimous_cpts</a></span><span class="op">(</span>data_ss_ori<span class="op">=</span><span class="va">data_space_SSMimpute</span>,<span class="va">formula_var</span>,ss_param_temp<span class="op">=</span><span class="va">ss_param</span>,</span>
+<span>                                                         initial_imputation_option<span class="op">=</span><span class="st">"StructTS"</span>,</span>
+<span>                                                         estimate_convergence_cri<span class="op">=</span><span class="fl">0.01</span>,</span>
+<span>                                                         lik_convergence_cri<span class="op">=</span><span class="fl">0.01</span>,</span>
+<span>                                                         stepsize_for_newpart<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">3</span>,</span>
+<span>                                                         max_iteration<span class="op">=</span><span class="fl">100</span>,</span>
+<span>                                                         cpt_learning_param<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cpt_method<span class="op">=</span><span class="st">"mean"</span>,burnin<span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="fl">10</span>,mergeband<span class="op">=</span><span class="fl">20</span>,convergence_cri<span class="op">=</span><span class="fl">10</span><span class="op">)</span>,</span>
+<span>                                                         cpt_initial_guess_option<span class="op">=</span><span class="st">"ignore"</span>,</span>
+<span>                                                         dlm_option<span class="op">=</span><span class="st">"smooth"</span>,m<span class="op">=</span><span class="fl">5</span>,seed<span class="op">=</span><span class="fl">1</span>,printFlag<span class="op">=</span><span class="cn">F</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span>
+<span></span>
+<span><span class="co">#&gt; Warning in BINSEG(sumstat, pen = pen.value, cost_func = costfunc, minseglen</span></span>
+<span><span class="co">#&gt; = minseglen, : The number of changepoints identified is Q, it is advised to</span></span>
+<span><span class="co">#&gt; increase Q to make sure changepoints have not been missed.</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#kable(result_statespace_SSMimpute1$result_convergence)</span>
-<span class="co">#kable(result_statespace_SSMimpute1$result_convergence_mp)</span>
-<span class="fu">kable</span><span class="op">(</span><span class="va">result_statespace_SSMimpute1</span><span class="op">$</span><span class="va">result_convergence_mp_addV</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#kable(result_statespace_SSMimpute1$result_convergence)</span></span>
+<span><span class="co">#kable(result_statespace_SSMimpute1$result_convergence_mp)</span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">result_statespace_SSMimpute1</span><span class="op">$</span><span class="va">result_convergence_mp_addV</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left"></th>
@@ -512,8 +537,8 @@ Y_{t}=\beta_{0, t}+0.5 Y_{t-1}+\beta_{1, t} X_{t}-0.5 X_{t-1}-\beta_{c, t}C_{t}+
 </tbody>
 </table>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">result_statespace_SSMimpute1</span><span class="op">$</span><span class="va">estimated_cpts</span>
-<span class="co">#&gt; [1] 399 700</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">result_statespace_SSMimpute1</span><span class="op">$</span><span class="va">estimated_cpts</span></span>
+<span><span class="co">#&gt; [1] 399 700</span></span></code></pre></div>
   </main>
 </div>
 
@@ -526,7 +551,7 @@ Y_{t}=\beta_{0, t}+0.5 Y_{t-1}+\beta_{1, t} X_{t}-0.5 X_{t-1}-\beta_{c, t}C_{t}+
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>

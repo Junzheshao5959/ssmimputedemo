@@ -1,12 +1,31 @@
 #' SSM function
-#'
+#' This function is used to
 #' @param data_ss contains all information, and only selected variables in formula_var enters the statespace model
 #' @param formula_var select variables from <data_ss> into the statespace model
-#' @param ss_param_temp <m0>: initial values for states
+#' @param ss_param_temp a list of parameters for state-space model
+#' \itemize{
+#' \item{\code{m0}: }{initial values for states}
+#' \item{\code{C0}: }{initial values for variance of states}
+#' \item{\code{inits}: }{initial values for the estimating of all NA terms, via maximizing likelihood}
+#' \item{\code{AR1_coeffi}: }{variables, whose coefficient is a AR(1) process; if none, then is NULL}
+#' \item{\code{rw_coeffi}: }{variables, whose coefficient is a random walk process;if none, then is NULL}
+#' \item{\code{w_cp_param}: }{variables, whose coefficients are periodic fixed (may shift to other levels over time, but fixed within periods)}
+#' \item{\code{v_cp_param}: }{information about periodic observational variance V (may decrease or increase over time, but fixed within periods)}
+#' }
 #' @param max_iteration control for the convergence of changepoints, a positive integer
-#' @param cpt_learning_param <cpt_learning_param>:  <cpt_method> either "mean" or "meanvar"
-#' @param dlm_option ...
-#' @param printFlag T / F
+#' @param cpt_learning_param
+#' \itemize{
+#' \item{\code{cpt_method}: }{either "mean" or "meanvar"}
+#' \item{\code{burnin}: }{a positive number in (0,1)}
+#' \item{\code{mergeband}: }{a positive integer}
+#' \item{\code{AR1_coeffi}: }{variables, whose coefficient is a AR(1) process; if none, then is NULL}
+#' \item{\code{rw_coeffi}: }{variables, whose coefficient is a random walk process;if none, then is NULL}
+#' \item{\code{w_cp_param}: }{variables, whose coefficients are periodic fixed (may shift to other levels over time, but fixed within periods)}
+#' \item{\code{v_cp_param}: }{information about periodic observational variance V (may decrease or increase over time, but fixed within periods)}
+#' }
+#'
+#' @param dlm_option using kalman filter or smoothing
+#' @param printFlag print data while processing
 #'
 #' @return
 #' @export

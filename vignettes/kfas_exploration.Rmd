@@ -1,0 +1,86 @@
+---
+title: "data exploration via KFAS"
+author: "Junzhe Shao"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{SSM_vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(stringr)
+```
+
+```{r}
+plot.KFS=function(KFS_out,selection=NULL,range=NULL){
+  if(class(KFS_out)!="KFS"){stop("The result is not a KFS object.")}
+  if(is.null(selection)){selection=1:ncol(KFS_out$att)}
+  if(is.null(range)){range=1:nrow(KFS_out$att)}
+  if(!all(selection %in% 1:ncol(KFS_out$att))){stop("The selected column overflow the #variables")}
+  for(id in selection){
+    plot.KFS_each(KFS_out,id,range=range)
+  }
+}
+plot.KFS_each=function(KFS_out,k,range){
+  sd_temp=sqrt(KFS_out$Ptt[k,k,])
+  plot(KFS_out$att[range,k],ylab=colnames(KFS_out$model$T)[k],type="l")
+  lines(KFS_out$att[range,k]+1.65*sd_temp[range],col="blue")
+  lines(KFS_out$att[range,k]-1.65*sd_temp[range],col="blue")
+  abline(h=0,lty=3,col="red")
+  cat(colnames(KFS_out$att)[k],": ",KFS_out$att[max(range),k]," (",KFS_out$att[max(range),k]-1.65*sd_temp[max(range)],",",KFS_out$att[max(range),k]+1.65*sd_temp[max(range)],").\n",sep="")
+}
+```
+
+
+```{r}
+library(KFAS)
+data_stationary
+
+head(data_stationary)
+# function for exploration
+run_exploration =function(formula = "y ~ x + c", data.input = data_stationary, method.input = "BFGS"){
+  resp = str_split(formula, " ~ ")[[1]][1]
+  #print(resp)
+  f = str_split(formula, " ~ ")[[1]][2]
+  #print(f)
+  n_variables = length(str_split(f, " \\+ ")[[1]])
+  print(n_variables)
+  col_list = colnames(data.input)
+  #print(col_list)
+  var_list = c(resp,str_split(f, " \\+ ")[[1]])
+  #print(var_list)
+  #print(mean(var_list %in% col_list))
+  if (mean(var_list %in% col_list)!=1){
+    stop("variables in the formula are not found in the input data")
+  }else{
+    model2_c_test=SSModel(data.input[,c(resp)] ~ -1 + 
+                        SSMregression(as.formula(paste("~ ",f, sep = " ")),data=data.input,Q=diag(rep(NA,n_variables))),
+                        data.input,H=NA)
+    model2_c_fit=fitSSM(model2_c_test, inits =rep(0,n_variables+1), method = method.input) # n_variables + one NA in H
+    model2_c_out=KFS(model2_c_fit$model)
+    plot.KFS(model2_c_out,range=30:708)
+  }
+  
+  return(model2_c_out)
+}
+run_exploration(formula = "y ~ x + c", data.input = data_stationary)
+```
+
+```{r}
+n_variables=2
+model2_c_test=SSModel(y ~ -1 + SSMregression(~ x + c,
+                                                           data=data.input,Q=diag(rep(NA,n_variables))),
+                      data,H=NA) # baseline variance constant
+model2_c_fit=fitSSM(model2_c_test, inits =rep(0,n_variables+1), method = method.input) # n_variables + one NA in H
+model2_c_out=KFS(model2_c_fit$model)
+plot.KFS(model2_c_out,range=30:708)
+model2_c_out$model$H;model2_c_out$model$Q # check intercept(0.012), logit_TAM_phone_1(0.0005), keycontacts_text_outdegree_merged (0.002)
+formula = "y ~ x + c"
+str_split(formula, "~")[[1]]
+```
+
