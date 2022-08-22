@@ -26,12 +26,28 @@ plot.KFS=function(KFS_out,selection=NULL,range=NULL){
     plot.KFS_each(KFS_out,id,range=range)
   }
 }
-plot.KFS_each=function(KFS_out,k,range){
+plot.KFS_each=function(KFS_out,k,range, print = F){
   sd_temp=sqrt(KFS_out$Ptt[k,k,])
-  plot(KFS_out$att[range,k],ylab=colnames(KFS_out$model$T)[k],type="l")
-  lines(KFS_out$att[range,k]+1.65*sd_temp[range],col="blue")
-  lines(KFS_out$att[range,k]-1.65*sd_temp[range],col="blue")
-  abline(h=0,lty=3,col="red")
+  fit = KFS_out$att[range,k]
+  upper = KFS_out$att[range,k]+1.65*sd_temp[range]
+  lower = KFS_out$att[range,k]-1.65*sd_temp[range]
+  min_y = min(fit,upper,lower)
+  max_y = max(fit,upper,lower)
+  x = seq(1,length(fit),1)
+  plot(upper,ylim = range(min_y-0.1*abs(min_y),max_y+0.1*abs(max_y)),ylab=colnames(KFS_out$model$T)[k],type="l", xlab = "Time", col = "grey")
+  lines(upper,col="grey")
+  polygon(c(x, rev(x)), c(lower, rev(upper)),col=gray(0.9), border = NA)
+  lines(fit,col=gray(0.4),lwd = 1.5)
+  abline(h = 0, col=gray(0.3), lwd=1, lty=3)
+  if(print){
+    text(length(fit)*0.73, max_y-0.3*abs(max_y),expression(hat(beta)[t==T[0]]))
+    text(length(fit)*0.8, max_y-0.3*abs(max_y),"=")
+    text(length(fit)*0.9, max_y-0.3*abs(max_y),round(fit[length(fit)],3), cex = 0.9)
+    arrows(x0 = length(fit)*0.8,
+           y0 = max_y-0.4*abs(max_y),
+           x1 = length(fit),
+           y1 = round(fit[length(fit)],3), lty = 1, length = 0.07, lwd = 1.4, col = "#2B4593")
+  }
   cat(colnames(KFS_out$att)[k],": ",KFS_out$att[max(range),k]," (",KFS_out$att[max(range),k]-1.65*sd_temp[max(range)],",",KFS_out$att[max(range),k]+1.65*sd_temp[max(range)],").\n",sep="")
 }
 ```
