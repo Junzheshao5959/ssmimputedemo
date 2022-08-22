@@ -1,8 +1,8 @@
 #' SSM function
-#' This function is used to
+#' This function is used to ...
 #' @param data_ss contains all information, and only selected variables in formula_var enters the statespace model
-#' @param formula_var select variables from <data_ss> into the statespace model
-#' @param ss_param_temp a list of parameters for state-space model
+#' @param formula_var select variables from \code{data_ss} into the statespace model
+#' @param ss_param_temp a list of parameters to set up state-space model
 #' \itemize{
 #' \item{\code{m0}: }{initial values for states}
 #' \item{\code{C0}: }{initial values for variance of states}
@@ -13,7 +13,7 @@
 #' \item{\code{v_cp_param}: }{information about periodic observational variance V (may decrease or increase over time, but fixed within periods)}
 #' }
 #' @param max_iteration control for the convergence of changepoints, a positive integer
-#' @param cpt_learning_param
+#' @param cpt_learning_param a list of variable for change point learning
 #' \itemize{
 #' \item{\code{cpt_method}: }{either "mean" or "meanvar"}
 #' \item{\code{burnin}: }{a positive number in (0,1)}

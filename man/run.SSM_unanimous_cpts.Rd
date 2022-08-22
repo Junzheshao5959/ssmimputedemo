@@ -2,7 +2,8 @@
 % Please edit documentation in R/run.SSM_unanimous_cpts.R
 \name{run.SSM_unanimous_cpts}
 \alias{run.SSM_unanimous_cpts}
-\title{SSM function}
+\title{SSM function
+This function is used to ...}
 \usage{
 run.SSM_unanimous_cpts(
   data_ss,
@@ -18,21 +19,37 @@ run.SSM_unanimous_cpts(
 \arguments{
 \item{data_ss}{contains all information, and only selected variables in formula_var enters the statespace model}
 
-\item{formula_var}{select variables from <data_ss> into the statespace model}
+\item{formula_var}{select variables from \code{data_ss} into the statespace model}
 
-\item{ss_param_temp}{<m0>: initial values for states}
+\item{ss_param_temp}{a list of parameters to set up state-space model
+\itemize{
+\item{\code{m0}: }{initial values for states}
+\item{\code{C0}: }{initial values for variance of states}
+\item{\code{inits}: }{initial values for the estimating of all NA terms, via maximizing likelihood}
+\item{\code{AR1_coeffi}: }{variables, whose coefficient is a AR(1) process; if none, then is NULL}
+\item{\code{rw_coeffi}: }{variables, whose coefficient is a random walk process;if none, then is NULL}
+\item{\code{w_cp_param}: }{variables, whose coefficients are periodic fixed (may shift to other levels over time, but fixed within periods)}
+\item{\code{v_cp_param}: }{information about periodic observational variance V (may decrease or increase over time, but fixed within periods)}
+}}
 
 \item{max_iteration}{control for the convergence of changepoints, a positive integer}
 
-\item{cpt_learning_param}{<cpt_learning_param>:  <cpt_method> either "mean" or "meanvar"}
+\item{cpt_learning_param}{a list of variable for change point learning
+\itemize{
+\item{\code{cpt_method}: }{either "mean" or "meanvar"}
+\item{\code{burnin}: }{a positive number in (0,1)}
+\item{\code{mergeband}: }{a positive integer}
+\item{\code{AR1_coeffi}: }{variables, whose coefficient is a AR(1) process; if none, then is NULL}
+\item{\code{rw_coeffi}: }{variables, whose coefficient is a random walk process;if none, then is NULL}
+\item{\code{w_cp_param}: }{variables, whose coefficients are periodic fixed (may shift to other levels over time, but fixed within periods)}
+\item{\code{v_cp_param}: }{information about periodic observational variance V (may decrease or increase over time, but fixed within periods)}
+}}
 
-\item{dlm_option}{...}
+\item{dlm_option}{using kalman filter or smoothing}
 
-\item{printFlag}{T / F}
-}
-\value{
-
+\item{printFlag}{print data while processing}
 }
 \description{
 SSM function
+This function is used to ...
 }

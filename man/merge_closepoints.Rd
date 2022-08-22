@@ -11,9 +11,6 @@ merge_closepoints(points, band)
 
 \item{band}{set up a band for merge}
 }
-\value{
-
-}
 \description{
 merge close points
 }

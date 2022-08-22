@@ -1,0 +1,352 @@
+---
+title: "Generate Missing key"
+output: html_document
+date: "2022-07-21"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ssmimputedemo)
+library(knitr)
+```
+
+# generate missing data key
+```{r}
+generate.missing_index=function(type,param,n,printFlag=T){
+  # The function is mainly written by Xinru Wang, edited by Xiaoxuan Cai from 03/17/21 to 03/20/21
+  # The general idea is from the page 63 of book <<Flexible Imputation of Missing Data>> by Stef van Buuren
+  
+  # This function generate missing index giving three machenisms: MCAR, MAR, MNAR
+  # type: [MCAR,MAR,MNAR]
+  # n: the length of original data
+  # param: must be a list -> param$data must be a data.frame
+  # (1) MCAR: <p>
+  #     Example: generate.missing_index(type = "MCAR", n=length(data$y), param = list(p=0.5))
+  # (2) MAR: (generate missing depending on observed covariates)
+  #          <data> of covariates;
+  #          <MAR.type> (choose in ["increasing","tail","middle])
+  #          <coeff> (#coeff=#covariates+1 for "increasing;
+  #                   #coeff=#covariates+1 for "tail";
+  #                   #coeff=#covariates+1 for "middle";)
+  #         <MMAR.drawplot> = c(T/F,<name of the covariate>)
+  #     Example: generate.missing_index(type = "MAR", n=length(data$y), 
+  #                                     param =list(data = data.frame(y_1=data$y_1), 
+  #                                                 MAR.type = "increasing",
+  #                                                 coeff = c(0.2,-8),  
+  #                                                 MAR.drawplot = c(TRUE, "y_1"))
+  #                                      )
+  # (3) MNAR: generate missing depending on unobserved values of y and c/x 
+  #           <data> unmeasured y or c/x or both
+  #           <MNAR.type> (choose in ["increasing","tail","middle])
+  #           <coeff> (#coeff=#covariates+1 for "increasing;
+  #                  #coeff=#covariates+1 for "tail";
+  #                  #coeff=#covariates+1 for "middle";)
+  #           <MNAR.drawplot> = c(T/F,<name of the covariate>)
+  #     Example: generate.missing_index(type = "MNAR", n=length(data$y),
+  #                                     param = ist(data = data.frame(y=data$y,x=data$x), 
+  #                                                 MNAR.type = "increasing",
+  #                                                 coeff = c(0.5,-1,0),  
+  #                                                 MNAR.drawplot = c(TRUE, "y"))  
+  #                                     )
+  
+  # Pre-checking
+  # check parameters: check param$type choose %in%  [MCAR,MAR,MNAR] 
+  #                   check param$data is data frame
+  #                   check the length of coeff agrees with the chooseing missing machenism
+  # type=="MCAR", length(list)==1  note: Xinru change to length(list)==1 (p)
+  # type=="MAR":  length(list)==4 (data,coeff,MAR.type,MAR.drawplot)
+  # type=="MNAR": length(list)==4 (data,coeff,MNAR.type,MNAR.drawplot)
+  
+  logistic <- function(x) {exp(x)/(1+exp(x)) }
+  
+  ## check type
+  if(!type %in% c("MCAR","MAR","MNAR")){
+    stop("The missing type shoud choose from ''MCAR'',''MAR'',''MNAR''!\n")
+  }
+  if(!is.list(param)){
+    stop("The parameter type is wrong!\n")
+  }
+  
+  ## Check the length of parameter is 1 for MCAR
+  if(type=="MCAR"){
+    if(length(param)!=1)
+    { stop("The number of parameters for MCAR shoudl be 1!")}
+    # create missingness indicator
+    p=param$p
+    cat("The missing probability is:",p,"\n")
+    missing=(2:n)[as.numeric(runif(n-1)<p)==1]
+    if(T){cat(paste(paste("The missing rate for MCAR is", length(missing)/n, sep = " "),"\n",sep=""))}
+  }
+  
+  if(type=="MAR"){
+    # requirement: param$data must be a data frame
+    #              param$MAR.type in c("increasing","tail","middle")
+    #              param$coeff 
+    #              param$MAR.drawplot = T/F
+    if(length(param)!=4){
+      stop("We require 4 parameters for MAR.")
+    }
+    if(!all(names(param) == c("data","MAR.type","coeff","MAR.drawplot"))){
+      stop("The input parameter must be [data],[MAR.type],[coeff],[MAR.drawplot]")
+    }
+    if(!is.data.frame(param$data) ){
+      stop("The data in param$data must be a data frame.")
+    }
+    if(nrow(param$data)!=n){
+      stop("The length of given dataset for MAR is wrong.\n")
+    }
+    if(!param$MAR.type %in% c("increasing","tail","middle")){
+      stop("The MAR.type must be increasing/tail/middle.")
+    }
+    
+    coeff <- param$coeff
+    dat <- param$data %>% mutate(intercept=1)
+    
+    # model is logit(p) = coeff[last]*intercept + X\beta
+    # the number of coeff is one more than the number of variables
+    if(param$MAR.type=="increasing"){ 
+      if(ncol(param$data) != (length(coeff)-1)){
+        stop("The number of coefficient for MAR.type 'increasing' is wrong!")
+      }
+      if(ncol(dat)!=length(coeff)){
+        stop("The dat is not correct.")
+      }
+      
+      ## missing probability
+      ## for one variable logistic(coeff[1]*y_1+coeff[2])
+      p <- logistic(as.matrix(dat) %*% coeff)
+      missing=(2:n)[rbinom((n-1),size=1,prob=(1-p[-1]))==0]
+      if(printFlag){
+        cat("The missing indicators for MAR 'increasing' are generated!\n")
+      }
+    }
+    
+    # model: logit(p)= coeff[1] + | coeff[2]y_1 (+coeffi[3] c) + coeff[last] |
+    #        the number in coeffi is 2 more than the number of variables
+    if(param$MAR.type=="tail"){ 
+      if(ncol(param$data) != (length(coeff)-2)){
+        stop("The number of coefficients for MAR.type 'tail' is wrong.")
+      }
+      if(ncol(dat)!=length(coeff)-1){
+        stop("The dat is not correct.")
+      }
+      
+      ## missing probability
+      ## for one variable logistic(coeff[1]+abs(coeff[2]*y_1+coeff[3]))
+      p <- logistic(coeff[1]+abs(as.matrix(dat) %*% coeff[-1]))
+      missing=(2:n)[rbinom((n-1),size=1,prob=(1-p[-1]))==0]
+      if(printFlag){
+        cat("The missing indicators for MAR 'tail' are generated!\n")
+      }
+    }
+    
+    # model: logit(p)= coeff[1] - | coeff[2]y_1 (+coeffi[3] c) + coeff[last] |
+    #        the number in coeffi is 2 more than the number of variables
+    if(param$MAR.type=="middle"){ 
+      if(ncol(param$data) != (length(coeff)-2)){
+        stop("The number of coefficients for MAR.type 'middle' is wrong.")
+      }
+      if(ncol(dat)!=length(coeff)-1){
+        stop("The dat is not correct.")
+      }
+      ## missing probability
+      ## for one variable logistic(coeff[1]+abs(coeff[2]*y_1+coeff[3]))
+      p <- logistic(coeff[1]-abs(as.matrix(dat) %*% coeff[-1]))
+      missing=(2:n)[rbinom((n-1),size=1,prob=(1-p[-1]))==0]
+      if(printFlag){
+        cat("The missing indicators for MAR 'middle' are generated!\n")
+      }
+    }
+    
+    if(printFlag){
+      if(param$MAR.drawplot[1]){
+        # hist(p)
+        for(j in 2:length(param$MAR.drawplot)){
+          data_plot=data.frame(x=dat[-1,param$MAR.drawplot[j]],p=p[-1])
+          g1 = ggplot(data_plot, aes(x=x, y=p))+
+            geom_line()+
+            theme_bw()+
+            ylab("Missing rate")+
+            theme(plot.margin = unit(c(1,1,1,1), "cm"),
+                  axis.title.x = element_text(size=15,vjust = -1),
+                  axis.title.y = element_text(size=15,vjust=4),
+                  axis.text = element_text(size=13))+
+            xlab(param$MAR.drawplot[j])
+          print(g1)
+        }
+      }
+    }
+    cat(paste(paste("The missing rate for MAR is", length(missing)/n, sep = " "),"\n",sep=""))
+ }
+  
+  if(type=="MNAR"){
+    # requirement: param$data must be a data frame
+    #              param$MAR.type in c("increasing","tail","middle")
+    #              param$coeff 
+    #              param$MAR.drawplot = T/F
+    if(length(param)!=4){
+      stop("We require 4 parameters for MAR.")
+    }
+    if(!all(names(param) == c("data","MNAR.type","coeff","MNAR.drawplot"))){
+      stop("The input parameter must be [data],[MNAR.type],[coeff],[MNAR.drawplot]")
+    }
+    if(!is.data.frame(param$data) ){
+      stop("The data in param$data must be a data frame.")
+    }
+    if(nrow(param$data)!=n){
+      stop("The length of given dataset for MAR is wrong.\n")
+    }
+    if(!param$MNAR.type %in% c("increasing","tail","middle")){
+      stop("The MAR.type must be increasing/tail/middle.")
+    }
+    
+    coeff <- param$coeff
+    dat <- param$data %>% mutate(intercept=1)
+    
+    if(param$MNAR.type=="increasing"){ 
+      if(ncol(param$data) != (length(coeff)-1)){
+        stop("The number of coefficient for MNAR.type 'increasing' is wrong!")
+      }
+      if(ncol(dat)!=length(coeff)){
+        stop("The dat is not correct.")
+      }
+      
+      ## missing probability
+      ## for one variable logistic(coeff[1]*y_1+coeff[2])
+      p <- logistic(as.matrix(dat) %*% coeff)
+      missing=(2:n)[rbinom((n-1),size=1,prob=(1-p[-1]))==0]
+      if(printFlag){cat("The missing indicators for MNAR 'increasing' are generated!\n")}
+    }
+    
+    if(param$MNAR.type=="tail"){ 
+      if(ncol(param$data) != (length(coeff)-2)){
+        stop("The number of coefficients for MNAR.type 'tail' is wrong.")
+      }
+      if(ncol(dat)!=length(coeff)-1){
+        stop("The dat is not correct.")
+      }
+      
+      ## missing probability
+      ## for one variable logistic(coeff[1]+abs(coeff[2]*y_1+coeff[3]))
+      p <- logistic(coeff[1]+abs(as.matrix(dat) %*% coeff[-1]))
+      missing=(2:n)[rbinom((n-1),size=1,prob=(1-p[-1]))==0]
+      if(printFlag){cat("The missing indicators for MNAR 'tail' are generated!\n")}
+    }
+    
+    if(param$MNAR.type=="middle"){ 
+      if(ncol(param$data) != (length(coeff)-2)){
+        stop("The number of coefficients for MNAR.type 'middle' is wrong.")
+      }
+      if(ncol(dat)!=length(coeff)-1){
+        stop("The dat is not correct.")
+      }
+      ## missing probability
+      ## for one variable logistic(coeff[1]+abs(coeff[2]*y_1+coeff[3]))
+      p <- logistic(coeff[1]-abs(as.matrix(dat) %*% coeff[-1]))
+      missing=(2:n)[rbinom((n-1),size=1,prob=(1-p[-1]))==0]
+      if(printFlag){cat("The missing indicators for MNAR 'middle' are generated!\n")}
+    }
+    
+    if(printFlag){
+      if(param$MNAR.drawplot[1])
+      {
+        # hist(p)
+        for(m in 2:length(param$MNAR.drawplot)){
+          data_plot=data.frame(x=dat[-1,param$MNAR.drawplot[m]],p=p[-1])
+          g1 = ggplot(data_plot, aes(x=x, y=p))+
+            geom_line()+
+            theme_bw()+
+            ylab("Missing rates")+
+            theme(plot.margin = unit(c(1,1,1,1), "cm"),
+                  axis.title.x = element_text(size=15,vjust = -1),
+                  axis.title.y = element_text(size=15,vjust=4),
+                  axis.text = element_text(size=13))+
+            xlab(param$MNAR.drawplot[m])
+          print(g1)
+        }
+      }
+    }
+    cat(paste(paste("The missing rate for MNAR is", length(missing)/n, sep = " "),"\n",sep=""))
+  }
+  
+  return(list(missing_index=missing,missing_rates=p))
+}
+```
+
+```{r}
+ssmimputedemo::data_stationary
+data = data_stationary
+data$y_1 = c(NA,data$y[1:999])
+data$x_1 = c(NA,data$x[1:999])
+data$c_1 = c(NA,data$c[1:999])
+index_MCAR = generate.missing_index(type = "MCAR", 
+                                    n=length(data$y), 
+                                    param = list(p=0.2))$missing_index
+
+index_MAR = generate.missing_index(type = "MAR", 
+                                   n=length(data$y), 
+                                   param =list(data = data.frame(y_1=data$y_1),
+                                               MAR.type = "increasing",
+                                               coeff = c(0.2,-8),
+                                               MAR.drawplot = c(TRUE, "y_1"))
+                                    )$missing_index
+
+index_MNAR = generate.missing_index(type = "MNAR", 
+                                    n=length(data$y),
+                                    param = list(data = data.frame(y=data$y,x=data$x),
+                                                 MNAR.type = "increasing",
+                                                 coeff = c(0.5,-1,0),
+                                                 MNAR.drawplot = c(TRUE, "y"))
+                                    )$missing_index
+
+
+```
+```{r}
+data$y[index_MAR] = NA
+data$y_1 = c(NA,data$y[1:999])
+data$x_1 = c(NA,data$x[1:999])
+data$c_1 = c(NA,data$c[1:999])
+
+data = data[c(2:1000),]
+data_space_SSMimpute = data
+kable(head(data_space_SSMimpute))
+imputeTS::ggplot_na_distribution(data_stationary$y, color_missing = "white",color_missing_border = "white", alpha_missing = 0.1)
+imputeTS::ggplot_na_distribution(data_space_SSMimpute$y, color_missing = "white",color_missing_border = "white", alpha_missing = 0.1)
+```
+
+```{r message=FALSE, warning=FALSE, results='hide'}
+printFlag=F
+formula="y~y_1+x+x_1+c"
+formula_var=unlist(strsplit(unlist(strsplit(formula,"~"))[2],"+",fixed=T))
+
+ss_param=list(inits=c(log(0.25),log(1)),m0=c(40,0.5,-1,-0.5,-1),C0=diag(rep(10^3),5), AR1_coeffi=NULL,rw_coeffi="intercept", v_cp_param=NULL, w_cp_param=NULL,max_iteration=100)
+
+head(data_space_SSMimpute)
+
+result_statespace_SSMimpute1=run.SSMimpute_unanimous_cpts(data_ss_ori=data_space_SSMimpute,formula_var,ss_param_temp=ss_param,
+                                                         initial_imputation_option="StructTS",
+                                                         estimate_convergence_cri=0.01,
+                                                         lik_convergence_cri=0.01,
+                                                         stepsize_for_newpart=1/3,
+                                                         max_iteration=100,
+                                                         cpt_learning_param=list(cpt_method="mean",burnin=1/10,mergeband=20,convergence_cri=10),
+                                                         cpt_initial_guess_option="ignore",
+                                                         dlm_option="smooth",m=5,seed=1,printFlag=F)
+
+
+
+```
+```{r fig.height = 2, fig.width = 8}
+#kable(result_statespace_SSMimpute1$result_convergence)
+#kable(result_statespace_SSMimpute1$result_convergence_mp)
+kable(result_statespace_SSMimpute1$result_convergence_mp_addV)
+result_statespace_SSMimpute1$estimated_cpts
+data_na = result_statespace_SSMimpute1$data_temp
+length(data_na$y_1)
+
+data_temp = result_statespace_SSMimpute1$data_temp
+missing_part=which(is.na(data_temp$y))[which(is.na(data_temp$y))<nrow(data_temp)]
+data_temp$y_1[missing_part+1]=result_statespace_SSMimpute1$y_final
+imputeTS::ggplot_na_distribution(data_stationary$y[1:999], color_missing = "pink",color_missing_border = "pink", alpha_missing = 0.9)
+imputeTS::ggplot_na_imputations(x_with_na = data_space_SSMimpute$y_1, x_with_imputations = data_na$y_1,x_with_truth = data_stationary$y[1:999])
+```

@@ -3,7 +3,7 @@ title: "data exploration via KFAS"
 author: "Junzhe Shao"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{SSM_vignette}
+  %\VignetteIndexEntry{data exploration via KFAS}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -39,8 +39,7 @@ plot.KFS_each=function(KFS_out,k,range){
 
 ```{r}
 library(KFAS)
-data_stationary
-
+library(ssmimputedemo)
 head(data_stationary)
 # function for exploration
 run_exploration =function(formula = "y ~ x + c", data.input = data_stationary, method.input = "BFGS"){
@@ -71,7 +70,7 @@ run_exploration =function(formula = "y ~ x + c", data.input = data_stationary, m
 run_exploration(formula = "y ~ x + c", data.input = data_stationary)
 ```
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 n_variables=2
 model2_c_test=SSModel(y ~ -1 + SSMregression(~ x + c,
                                                            data=data.input,Q=diag(rep(NA,n_variables))),

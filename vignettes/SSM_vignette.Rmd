@@ -38,7 +38,7 @@ imputeTS::ggplot_na_distribution(data_space_SSMimpute$x, color_missing = "pink",
 imputeTS::ggplot_na_distribution(data_space_SSMimpute$c, color_missing = "pink",color_missing_border = "pink", alpha_missing = 0.9)
 ```
 ```{r message = FALSE, results ='hide', warnings = FALSE}
-printFlag=T
+printFlag=F
 formula="y~y_1+x+x_1+c"
 formula_var=unlist(strsplit(unlist(strsplit(formula,"~"))[2],"+",fixed=T))
 
